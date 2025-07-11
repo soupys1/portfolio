@@ -282,7 +282,7 @@ const Hero = () => {
           />
         </h1>
         <p style={{ color: '#e2e8f0', fontSize: 18, marginBottom: 32 }}>
-          Crafting digital experiences with modern technologies and innovative solutions
+        Bringing visions to life with elegant code and innovative design.
         </p>
         <a href="#projects" style={{ display: 'inline-block', padding: '12px 32px', background: 'linear-gradient(to right, #cbd5e1, #64748b)', color: '#1e293b', fontWeight: 700, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.12)', textDecoration: 'none', fontSize: 18 }}>View My Work</a>
       </div>

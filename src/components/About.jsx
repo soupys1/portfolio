@@ -1,4 +1,5 @@
 import React from 'react';
+import portfolioImg from '../assets/portfolio.PNG';
 
 const techs = [
   [ 'Node.js','Python', 'Javascript ES6+'],
@@ -13,8 +14,8 @@ const About = () => (
           <span className="text-emerald-300 text-5xl font-mono">/</span> about me
         </h2>
         <p className="text-slate-200 text-xl leading-relaxed mb-8 font-sans">
-          I am a <span className="font-bold text-white">Software Developer</span> passionate about building modern web applications.<br />
-          I am pursuing a <span className="font-bold text-emerald-300">Master's of Science</span> in Software Engineering.
+          I’m a <span className="font-bold text-white">Software Developer</span> passionate about building modern, user-centric web applications.<br />
+          Currently pursuing a <span className="font-bold text-emerald-300">Master of Science in Software Engineering</span> to deepen my expertise in scalable system design and development.
         </p>
 
         <div className="grid grid-cols-2 gap-6 mb-8">
@@ -33,15 +34,15 @@ const About = () => (
         </div>
 
         <p className="text-slate-400 text-base leading-relaxed font-sans">
-          Outside of work, I'm interested in science, video games, and side projects.
+          Outside of work, I'm interested in music, video games, and side projects.
         </p>
       </div>
 
       <div className="flex-1 flex justify-center min-w-0">
         <img
-          src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=300&h=300&q=80"
+          src={portfolioImg}
           alt="Profile"
-          className="rounded-3xl shadow-xl w-56 h-56 object-cover object-center"
+          className="rounded-3xl shadow-xl w-96 h-96 object-cover object-center"
         />
       </div>
     </div>

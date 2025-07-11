@@ -1,57 +1,62 @@
 import React, { useState } from 'react';
+import joinahackImg from '../assets/joinahack.PNG';
+import conversoImg from '../assets/converso.PNG';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    desc: 'A full-featured online shopping platform with payment integration and admin dashboard.',
-    tech: ['React', 'Node.js', 'MongoDB'],
-    image: 'https://source.unsplash.com/random/800x400?ecommerce',
-    github: '#',
-    website: '#',
+    title: 'JoinAHack',
+    desc: 'Full-stack social media platform for students to showcase projects, find hackathon teammates, and for organizers to manage events. Features real-time messaging, secure JWT authentication, and Supabase/Postgres integration. Built with React.js, Vite, Node.js, and Express.',
+    tech: ['React', 'Vite', 'Node.js', 'Express', 'Supabase', 'Postgres', 'JWT'],
+    image: joinahackImg,
+    github: 'https://github.com/soupys1/socialMedia_frontend',
+    website: 'https://social-media-frontend-black-five.vercel.app/',
+    featured: true,
   },
   {
-    title: 'Social Media App',
-    desc: 'A modern social networking application with real-time messaging and media sharing.',
-    tech: ['React Native', 'Firebase', 'Socket.io'],
-    image: 'https://source.unsplash.com/random/800x400?social',
-    github: '#',
-    website: '#',
+    title: 'Converso – AI Learning App',
+    desc: 'Built a modern AI learning app with Next.js and React, enabling personalized real-time voice tutors using Vapi. Designed a responsive, accessible UI with TailwindCSS and developed full-stack features including API routes and real-time updates. Integrated Clerk for authentication, Supabase for database management, and deployed on Vercel for scalable delivery.',
+    tech: ['Next.js', 'React', 'Vapi', 'TailwindCSS', 'Clerk', 'Supabase', 'Vercel'],
+    image: conversoImg,
+    github: 'https://github.com/soupys1/saas-ai-tutor',
+    website: 'https://saas-app-lemon.vercel.app/',
+    featured: true,
   },
   {
-    title: 'Analytics Dashboard',
-    desc: 'A comprehensive analytics dashboard with data visualization and reporting features.',
-    tech: ['Vue.js', 'D3.js', 'Python'],
-    image: 'https://source.unsplash.com/random/800x400?dashboard',
-    github: '#',
-    website: '#',
+    title: 'Health Chat Bot - ML',
+    desc: 'Built full-stack AI chatbot with Python Flask backend using Hugging Face RoBERTa model for sentiment analysis and React frontend. Created RESTful API using Flask for real-time sentiment analysis and empathetic response generation.',
+    tech: ['Python', 'Flask', 'Hugging Face', 'RoBERTa', 'React'],
+    github: 'https://github.com/soupys1/chatbotbackend',
+    featured: false,
   },
 ];
 
+const carouselProjects = projects.filter(p => p.featured);
+const cardDeckProjects = projects;
+
 const Projects = () => {
   const [current, setCurrent] = useState(0);
-  const total = projects.length;
+  const total = carouselProjects.length;
 
   const prev = () => setCurrent((current - 1 + total) % total);
   const next = () => setCurrent((current + 1) % total);
 
-  const project = projects[current];
+  const project = carouselProjects[current];
 
   return (
     <section className="py-24 bg-slate-800" id="projects">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-center text-4xl font-bold text-gray-100 mb-16 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-gray-300 after:mx-auto after:mt-4">My Projects</h2>
-        
         {/* Carousel Section */}
         <div className="mb-20">
           <h3 className="text-center text-2xl font-semibold text-gray-200 mb-8">Featured Projects</h3>
           <div className="relative max-w-4xl mx-auto">
-            <div className="bg-slate-100 rounded-3xl overflow-hidden shadow-2xl">
+            <div className="bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-700">
               <img src={project.image} alt={project.title} className="w-full h-80 object-cover" />
               <div className="p-8 text-center">
-                <h3 className="text-slate-800 text-3xl font-bold mb-4">{project.title}</h3>
-                <p className="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">{project.desc}</p>
+                <h3 className="text-slate-100 text-3xl font-bold mb-4">{project.title}</h3>
+                <p className="text-gray-300 text-lg mb-6 max-w-2xl mx-auto">{project.desc}</p>
                 <div className="flex flex-wrap gap-3 mb-6 justify-center">
-                  {project.tech.map(t => (
+                  {project.tech && project.tech.map(t => (
                     <span key={t} className="bg-emerald-400 text-slate-900 px-4 py-2 rounded-full text-sm font-bold">{t}</span>
                   ))}
                 </div>
@@ -62,12 +67,14 @@ const Projects = () => {
                     </svg>
                     GitHub
                   </a>
-                  <a href={project.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-emerald-400 text-slate-900 rounded-lg hover:bg-emerald-300 transition text-sm">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    Live
-                  </a>
+                  {project.website && (
+                    <a href={project.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-emerald-400 text-slate-900 rounded-lg hover:bg-emerald-300 transition text-sm">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      Live
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -75,7 +82,7 @@ const Projects = () => {
             <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-800 rounded-full p-3 shadow-lg transition z-10">&#8594;</button>
           </div>
           <div className="flex justify-center gap-3 mt-6">
-            {projects.map((_, idx) => (
+            {carouselProjects.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrent(idx)}
@@ -85,23 +92,25 @@ const Projects = () => {
             ))}
           </div>
         </div>
-
         {/* Grid Section */}
         <div>
           <h3 className="text-center text-2xl font-semibold text-gray-200 mb-12">All Projects</h3>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, idx) => (
-              <div key={idx} className="bg-slate-900 rounded-2xl shadow-lg overflow-hidden flex flex-col hover:-translate-y-2 transition-transform p-8 text-center">
-                <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
-                <p className="text-gray-300 mb-6 flex-1">{project.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                  {project.tech.map(t => (
+              <div key={idx} className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl shadow-xl flex flex-col hover:-translate-y-1 hover:scale-105 transition-transform p-6 text-center items-center border border-slate-700">
+                {/* No project image here */}
+                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                <p className="text-emerald-200 mb-4 text-sm flex-1">{project.desc}</p>
+                <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                  {project.tech && project.tech.map(t => (
                     <span key={t} className="bg-emerald-400 text-slate-900 px-3 py-1 rounded-full text-xs font-bold">{t}</span>
                   ))}
                 </div>
-                <div className="flex gap-4 justify-center">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition">GitHub</a>
-                  <a href={project.website} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-emerald-400 text-slate-900 rounded hover:bg-emerald-300 transition">Live</a>
+                <div className="flex gap-3 justify-center">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition text-xs font-semibold">GitHub</a>
+                  {project.website && (
+                    <a href={project.website} target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-emerald-400 text-slate-900 rounded-lg hover:bg-emerald-300 transition text-xs font-semibold">Live</a>
+                  )}
                 </div>
               </div>
             ))}
