@@ -13,7 +13,7 @@ const particles = Array.from({ length: 9 }, (_, i) => (
 const Hero = () => {
   return (
     <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(to bottom right, #1e293b, #94a3b8)' }} id="home">
-      <div style={{ textAlign: 'center', zIndex: 10, maxWidth: 600, padding: 16, position: 'relative' }}>
+      <div style={{ textAlign: 'center', zIndex: 10, maxWidth: 600, padding: '16px', position: 'relative' }} className="w-full px-4 md:px-8">
         <motion.div
           style={{
             position: 'absolute',
@@ -28,6 +28,7 @@ const Hero = () => {
             justifyContent: 'center',
             filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))',
           }}
+          className="hidden md:block"
           animate={{
             y: [0, -15, 0],
             rotate: [0, 1, -1, 0],
@@ -268,7 +269,7 @@ const Hero = () => {
           </motion.div>
         </motion.div>
         
-        <h1 style={{ color: '#fff', fontSize: 64, fontWeight: 700, fontFamily: 'Poppins, Nunito, Quicksand, Arial, sans-serif', letterSpacing: 1 }}>
+        <h1 style={{ color: '#fff', fontSize: 'clamp(2rem, 8vw, 4rem)', fontWeight: 700, fontFamily: 'Poppins, Nunito, Quicksand, Arial, sans-serif', letterSpacing: 1 }} className="mb-4">
           I am
           <Typewriter
             options={{
@@ -281,10 +282,10 @@ const Hero = () => {
             }}
           />
         </h1>
-        <p style={{ color: '#e2e8f0', fontSize: 18, marginBottom: 32 }}>
+        <p style={{ color: '#e2e8f0', fontSize: 'clamp(1rem, 4vw, 1.125rem)', marginBottom: 32 }} className="mb-8 px-4">
         Bringing visions to life with elegant code and innovative design.
         </p>
-        <a href="#projects" style={{ display: 'inline-block', padding: '12px 32px', background: 'linear-gradient(to right, #cbd5e1, #64748b)', color: '#1e293b', fontWeight: 700, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.12)', textDecoration: 'none', fontSize: 18 }}>View My Work</a>
+        <a href="#projects" style={{ display: 'inline-block', padding: '12px 32px', background: 'linear-gradient(to right, #cbd5e1, #64748b)', color: '#1e293b', fontWeight: 700, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.12)', textDecoration: 'none', fontSize: 'clamp(1rem, 3vw, 1.125rem)' }} className="hover:scale-105 transition-transform">View My Work</a>
       </div>
       {particles}
     </section>

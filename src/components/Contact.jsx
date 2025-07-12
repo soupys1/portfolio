@@ -34,25 +34,25 @@ const contactMethods = [
 ];
 
 const Contact = () => (
-  <section className="py-12 bg-slate-900" id="contact">
+  <section className="py-12 md:py-16 bg-slate-900" id="contact">
     <div className="max-w-4xl mx-auto px-4">
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center flex items-center gap-3 justify-center">
-        <span className="text-emerald-300 text-3xl font-mono">/</span> contact me
+      <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 text-center flex items-center gap-3 justify-center">
+        <span className="text-emerald-300 text-2xl md:text-3xl font-mono">/</span> contact me
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center md:text-left">
         {contactMethods.map((method) => (
           <a
             key={method.label}
             href={method.href || undefined}
-            className={`group flex flex-col items-center md:items-start gap-2 p-4 rounded-2xl shadow-xl transition-transform hover:-translate-y-1 hover:scale-105 ${method.bg} ${method.text} focus:outline-none focus:ring-2 focus:ring-emerald-400`}
+            className={`group flex flex-col items-center md:items-start gap-2 p-4 md:p-6 rounded-2xl shadow-xl transition-transform hover:-translate-y-1 hover:scale-105 ${method.bg} ${method.text} focus:outline-none focus:ring-2 focus:ring-emerald-400`}
             style={{ textDecoration: 'none', boxShadow: '0 4px 24px 0 rgba(16, 185, 129, 0.08)' }}
             tabIndex={0}
           >
-            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-700 shadow group-hover:bg-emerald-900 transition">
+            <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-slate-700 shadow group-hover:bg-emerald-900 transition">
               {method.icon}
             </div>
-            <h4 className="font-semibold text-base">{method.label}</h4>
-            <p className="text-sm font-mono break-all">{method.value}</p>
+            <h4 className="font-semibold text-sm md:text-base">{method.label}</h4>
+            <p className="text-xs md:text-sm font-mono break-all">{method.value}</p>
           </a>
         ))}
       </div>

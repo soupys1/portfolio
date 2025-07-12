@@ -91,7 +91,7 @@ const Cursor = () => {
 
   return (
     <>
-      {/* Morphing overlay (iOS pointer style) */}
+      {/* Morphing overlay (iOS pointer style) - Hidden on mobile */}
       <motion.div
         animate={morphControls}
         style={{
@@ -103,8 +103,9 @@ const Cursor = () => {
           zIndex: 9998,
           mixBlendMode: 'multiply',
         }}
+        className="hidden md:block"
       />
-      {/* Always show a small dot in the center of the pointer */}
+      {/* Always show a small dot in the center of the pointer - Hidden on mobile */}
       <motion.div
         style={{
           position: 'fixed',
@@ -120,6 +121,7 @@ const Cursor = () => {
           y: dotY,
           boxShadow: '0 1px 4px rgba(0,0,0,0.10)',
         }}
+        className="hidden md:block"
       />
     </>
   );
