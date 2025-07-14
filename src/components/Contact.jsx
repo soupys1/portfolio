@@ -6,8 +6,8 @@ const contactMethods = [
       <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-emerald-400"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm0 0v1a4 4 0 01-8 0v-1" /></svg>
     ),
     label: 'Email',
-    value: 'souptik.sinha1@gmail.com',
-    href: 'mailto:souptik.sinha1@gmail.com',
+    value: 'souptiksinha1@gmail.com',
+    href: 'mailto:souptiksinha1@gmail.com',
     bg: 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800',
     text: 'text-emerald-200',
   },
