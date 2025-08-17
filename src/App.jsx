@@ -11,7 +11,7 @@ function App() {
     <>
       <Cursor />
       <Navbar />
-      <main className="pt-16 md:pt-8">
+      <main>
         <Hero />
         <About />
         <Projects />

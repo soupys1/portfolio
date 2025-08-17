@@ -2,292 +2,108 @@ import React from 'react';
 import Typewriter from 'typewriter-effect';
 import { motion } from 'framer-motion';
 
-const particles = Array.from({ length: 9 }, (_, i) => (
-  <div
-    key={i}
-    className="absolute w-1 h-1 bg-gray-300 rounded-full animate-float"
-    style={{ left: `${10 + i * 10}%`, animationDelay: `${i * 2}s` }}
-  />
-));
-
 const Hero = () => {
   return (
-    <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(to bottom right, #1e293b, #94a3b8)' }} id="home">
-      <div style={{ textAlign: 'center', zIndex: 10, maxWidth: 600, padding: '16px', position: 'relative' }} className="w-full px-4 md:px-8">
+    <section className="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden" id="home">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-2 h-2 bg-white/20 rounded-full animate-float" style={{ animationDelay: '0s' }}></div>
+        <div className="absolute top-40 right-20 w-1 h-1 bg-white/30 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-40 left-20 w-1.5 h-1.5 bg-white/15 rounded-full animate-float" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute bottom-20 right-10 w-1 h-1 bg-white/25 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
+      </div>
+
+      <div className="container-custom relative z-10 text-center">
         <motion.div
-          style={{
-            position: 'absolute',
-            top: -120,
-            left: '40%',
-            transform: 'translateX(-50%)',
-            width: 100,
-            height: 120,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))',
-          }}
-          className="hidden md:block"
-          animate={{
-            y: [0, -15, 0],
-            rotate: [0, 1, -1, 0],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl mx-auto"
         >
-          <motion.div
-            style={{
-              width: 70,
-              height: 70,
-              borderRadius: '50%',
-              background: 'radial-gradient(circle at 30% 30%, #f8fafc, #e2e8f0, #cbd5e1)',
-              position: 'relative',
-              marginBottom: -10,
-              border: '3px solid #1f2937',
-              boxShadow: 'inset 0 4px 8px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.2)',
-            }}
-            animate={{
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+          {/* Main Heading */}
+          <h1 className="text-gradient font-black mb-6 text-balance">
+            Crafting Digital
+            <br />
+            <span className="text-white">Experiences</span>
+          </h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-xl md:text-2xl text-white/70 mb-8 max-w-2xl mx-auto font-light"
           >
-            <motion.div
-              style={{
-                position: 'absolute',
-                top: -8,
-                left: 8,
-                width: 20,
-                height: 20,
-                borderRadius: '50%',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-              }}
-            />
-            <motion.div
-              style={{
-                position: 'absolute',
-                top: -8,
-                right: 8,
-                width: 20,
-                height: 20,
-                borderRadius: '50%',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-              }}
-            />
-            <motion.div
-              style={{
-                position: 'absolute',
-                top: 20,
-                left: 15,
-                width: 18,
-                height: 18,
-                borderRadius: '50%',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.2)',
-              }}
-              animate={{
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <div style={{ 
-                width: 6, 
-                height: 6, 
-                borderRadius: '50%', 
-                background: 'radial-gradient(circle at 30% 30%, #ffffff, #f1f5f9)',
-                boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)'
-              }} />
-            </motion.div>
-            <motion.div
-              style={{
-                position: 'absolute',
-                top: 20,
-                right: 15,
-                width: 18,
-                height: 18,
-                borderRadius: '50%',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.2)',
-              }}
-              animate={{
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5
-              }}
-            >
-              <div style={{ 
-                width: 6, 
-                height: 6, 
-                borderRadius: '50%', 
-                background: 'radial-gradient(circle at 30% 30%, #ffffff, #f1f5f9)',
-                boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)'
-              }} />
-            </motion.div>
-            <motion.div
-              style={{
-                position: 'absolute',
-                top: 40,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 8,
-                height: 6,
-                borderRadius: '50%',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.3)',
+            I'm <span className="font-semibold text-white">Souptik Sinha</span>, a Full Stack Developer
+            <br />
+            passionate about building modern, impactful web applications
+          </motion.p>
+
+          {/* Typewriter Effect */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="mb-12"
+          >
+            <Typewriter
+              options={{
+                strings: [
+                  'Full Stack Developer',
+                  'React Specialist',
+                  'Node.js Developer',
+                  'Problem Solver'
+                ],
+                autoStart: true,
+                loop: true,
+                delay: 80,
+                deleteSpeed: 50,
+                pauseFor: 2000,
+                wrapperClassName: 'text-2xl md:text-3xl font-semibold text-white/90',
+                cursorClassName: 'text-2xl md:text-3xl font-semibold text-white'
               }}
             />
           </motion.div>
+
+          {/* CTA Buttons */}
           <motion.div
-            style={{
-              width: 80,
-              height: 90,
-              borderRadius: '40px 40px 25px 25px',
-              background: 'radial-gradient(circle at 30% 30%, #f8fafc, #e2e8f0, #cbd5e1)',
-              position: 'relative',
-              border: '3px solid #1f2937',
-              boxShadow: 'inset 0 4px 8px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.2)',
-            }}
-            animate={{
-              scale: [1, 1.02, 1],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <motion.div
-              style={{
-                position: 'absolute',
-                left: -12,
-                top: 25,
-                width: 25,
-                height: 35,
-                borderRadius: '12px',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                transform: 'rotate(-15deg)',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-              }}
-              animate={{
-                rotate: [-15, -10, -15],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              style={{
-                position: 'absolute',
-                right: -12,
-                top: 25,
-                width: 25,
-                height: 35,
-                borderRadius: '12px',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                transform: 'rotate(15deg)',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-              }}
-              animate={{
-                rotate: [15, 10, 15],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5
-              }}
-            />
+            <a 
+              href="#projects" 
+              className="group relative px-8 py-4 bg-white text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <span className="relative z-10">View My Work</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white to-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+            
+            <a 
+              href="#contact" 
+              className="group px-8 py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 hover:scale-105"
+            >
+              Get In Touch
+            </a>
           </motion.div>
+
+          {/* Scroll Indicator */}
           <motion.div
-            style={{
-              display: 'flex',
-              gap: 10,
-              marginTop: -5,
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           >
-            <motion.div
-              style={{
-                width: 15,
-                height: 12,
-                borderRadius: '8px',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-              }}
-              animate={{
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              style={{
-                width: 15,
-                height: 12,
-                borderRadius: '8px',
-                background: 'radial-gradient(circle at 30% 30%, #374151, #1f2937)',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-              }}
-              animate={{
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5
-              }}
-            />
+            <div className="flex flex-col items-center text-white/50 text-sm">
+              <span className="mb-2">Scroll</span>
+              <div className="w-0.5 h-8 bg-white/30 rounded-full">
+                <div className="w-full h-2 bg-white/60 rounded-full animate-bounce"></div>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
-        
-        <h1 style={{ color: '#fff', fontSize: 'clamp(2rem, 8vw, 4rem)', fontWeight: 700, fontFamily: 'Poppins, Nunito, Quicksand, Arial, sans-serif', letterSpacing: 1 }} className="mb-4">
-          I am
-          <Typewriter
-            options={{
-              strings: [' Souptik Sinha', ' a Full Stack Developer'],
-              autoStart: true,
-              loop: true,
-              delay: 100,
-              deleteSpeed: 50,
-              pauseFor: 2000,
-            }}
-          />
-        </h1>
-        <p style={{ color: '#e2e8f0', fontSize: 'clamp(1rem, 4vw, 1.125rem)', marginBottom: 32 }} className="mb-8 px-4">
-        Bringing visions to life with elegant code and innovative design.
-        </p>
-        <a href="#projects" style={{ display: 'inline-block', padding: '12px 32px', background: 'linear-gradient(to right, #cbd5e1, #64748b)', color: '#1e293b', fontWeight: 700, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.12)', textDecoration: 'none', fontSize: 'clamp(1rem, 3vw, 1.125rem)' }} className="hover:scale-105 transition-transform">View My Work</a>
       </div>
-      {particles}
     </section>
   );
 };
