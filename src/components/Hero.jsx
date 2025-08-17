@@ -21,7 +21,7 @@ const Hero = () => {
           className="max-w-4xl mx-auto"
         >
           {/* Main Heading */}
-          <h1 className="text-gradient font-black mb-6 text-balance">
+          <h1 className="text-gradient font-black mb-4 sm:mb-6 text-balance text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
             Crafting Digital
             <br />
             <span className="text-white">Experiences</span>
@@ -32,11 +32,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-xl md:text-2xl text-white/70 mb-8 max-w-2xl mx-auto font-light"
+            className="text-lg sm:text-xl md:text-2xl text-white/70 mb-6 sm:mb-8 max-w-2xl mx-auto font-light px-4 sm:px-0"
           >
             I'm <span className="font-semibold text-white">Souptik Sinha</span>, a Full Stack Developer
-            <br />
-            passionate about building modern, impactful web applications
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>passionate about building modern, impactful web applications
           </motion.p>
 
           {/* Typewriter Effect */}
@@ -44,7 +44,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="mb-12"
+            className="mb-8 sm:mb-12 px-4 sm:px-0"
           >
             <Typewriter
               options={{
@@ -59,8 +59,8 @@ const Hero = () => {
                 delay: 80,
                 deleteSpeed: 50,
                 pauseFor: 2000,
-                wrapperClassName: 'text-2xl md:text-3xl font-semibold text-white/90',
-                cursorClassName: 'text-2xl md:text-3xl font-semibold text-white'
+                wrapperClassName: 'text-xl sm:text-2xl md:text-3xl font-semibold text-white/90 text-center',
+                cursorClassName: 'text-xl sm:text-2xl md:text-3xl font-semibold text-white'
               }}
             />
           </motion.div>
@@ -70,11 +70,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 sm:px-0"
           >
             <a 
               href="#projects" 
-              className="group relative px-8 py-4 bg-white text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95 touch-manipulation min-h-[48px] flex items-center justify-center text-center"
             >
               <span className="relative z-10">View My Work</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white to-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -82,7 +82,7 @@ const Hero = () => {
             
             <a 
               href="#contact" 
-              className="group px-8 py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 hover:scale-105"
+              className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation min-h-[48px] flex items-center justify-center text-center"
             >
               Get In Touch
             </a>
@@ -93,7 +93,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:flex"
           >
             <div className="flex flex-col items-center text-white/50 text-sm">
               <span className="mb-2">Scroll</span>

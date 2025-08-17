@@ -13,6 +13,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Account for fixed navbar */
   }
 
   body {
@@ -55,11 +56,35 @@
   .container-custom {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding: 0 2rem;
+    }
   }
 
   .section-padding {
-    padding: 8rem 0;
+    padding: 4rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .section-padding {
+      padding: 6rem 0;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding: 8rem 0;
+    }
   }
 
   .gradient-text {
@@ -167,6 +192,53 @@
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     opacity: 0.3;
   }
+
+  /* Section transition animations */
+  .section-entering {
+    animation: sectionEnter 0.8s ease-out;
+  }
+
+  @keyframes sectionEnter {
+    0% {
+      opacity: 0.8;
+      transform: translateY(20px) scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Smooth section transitions on scroll */
+  section {
+    transition: all 0.3s ease-out;
+  }
+
+  /* Enhanced scroll behavior - moved to base layer */
+
+  /* High-quality image rendering */
+  .high-quality-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimizeQuality;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+    filter: contrast(1.1) saturate(1.1) brightness(1.02);
+    transition: filter 0.3s ease;
+  }
+
+  .high-quality-image:hover {
+    filter: contrast(1.15) saturate(1.15) brightness(1.05);
+  }
+
+  /* Prevent image pixelation on different screen sizes */
+  img {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
 }
 
 @layer utilities {
@@ -186,5 +258,40 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Mobile-specific utilities */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .min-touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Mobile typography improvements */
+  @media (max-width: 640px) {
+    .mobile-text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .mobile-text-base {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    .mobile-text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
   }
 }

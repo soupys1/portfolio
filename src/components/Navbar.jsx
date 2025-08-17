@@ -33,12 +33,13 @@ const Navbar = () => {
       }`}
     >
       <div className="container-custom">
-        <div className="flex justify-between items-center py-6">
+        <div className="flex justify-between items-center py-4 sm:py-6">
           {/* Logo */}
           <motion.a 
             href="#home" 
-            className="text-2xl font-black text-white hover:text-white/80 transition-colors duration-300"
+            className="text-xl sm:text-2xl font-black text-white hover:text-white/80 transition-colors duration-300 touch-manipulation"
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Souptik Sinha
           </motion.a>
@@ -66,7 +67,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={toggleMenu}
-            className="md:hidden text-white hover:text-white/80 transition-colors duration-300 p-2"
+            className="md:hidden text-white hover:text-white/80 transition-colors duration-300 p-3 touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Toggle menu"
             whileTap={{ scale: 0.95 }}
           >
@@ -100,7 +101,7 @@ const Navbar = () => {
                   <a 
                     href={item.href} 
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-white/80 font-medium px-6 py-4 hover:text-white hover:bg-white/10 transition-all duration-300"
+                    className="block text-white/80 font-medium px-6 py-4 hover:text-white hover:bg-white/10 active:bg-white/20 transition-all duration-300 touch-manipulation min-h-[48px] flex items-center"
                   >
                     {item.label}
                   </a>

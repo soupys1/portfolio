@@ -55,7 +55,7 @@ const Contact = () => (
       </motion.div>
 
       {/* Contact Methods */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 lg:mb-16">
         {contactMethods.map((method, index) => (
           <motion.div
             key={method.label}
@@ -67,25 +67,25 @@ const Contact = () => (
             {method.href ? (
               <a
                 href={method.href}
-                className="group block p-8 project-card card-hover text-center"
+                className="group block p-6 lg:p-8 project-card card-hover text-center touch-manipulation min-h-[44px] hover:scale-105 active:scale-95 transition-all duration-300"
               >
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
-                  <div className="text-white group-hover:text-white/90 transition-colors duration-300">
+                <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6 flex items-center justify-center rounded-2xl bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
+                  <div className="text-white group-hover:text-white/90 transition-colors duration-300 scale-75 lg:scale-100">
                     {method.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{method.label}</h3>
-                <p className="text-white/70 font-mono break-all">{method.value}</p>
+                <h3 className="text-lg lg:text-xl font-bold text-white mb-2 lg:mb-3">{method.label}</h3>
+                <p className="text-white/70 font-mono text-sm lg:text-base break-all">{method.value}</p>
               </a>
             ) : (
-              <div className="p-8 project-card text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-white/10">
-                  <div className="text-white">
+              <div className="p-6 lg:p-8 project-card text-center">
+                <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6 flex items-center justify-center rounded-2xl bg-white/10">
+                  <div className="text-white scale-75 lg:scale-100">
                     {method.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{method.label}</h3>
-                <p className="text-white/70 font-mono">{method.value}</p>
+                <h3 className="text-lg lg:text-xl font-bold text-white mb-2 lg:mb-3">{method.label}</h3>
+                <p className="text-white/70 font-mono text-sm lg:text-base">{method.value}</p>
               </div>
             )}
           </motion.div>
@@ -100,20 +100,18 @@ const Contact = () => (
         viewport={{ once: true }}
         className="text-center"
       >
-        <div className="max-w-2xl mx-auto p-8 project-card">
-          <h3 className="text-2xl font-bold text-white mb-4">Ready to start a project?</h3>
-          <p className="text-white/70 mb-6">
+        <div className="max-w-2xl mx-auto p-6 lg:p-8 project-card">
+          <h3 className="text-xl lg:text-2xl font-bold text-white mb-4">Ready to start a project?</h3>
+          <p className="text-white/70 mb-6 text-sm lg:text-base">
             I'm available for freelance work and full-time opportunities. 
             Let's discuss your project requirements and timeline.
           </p>
-          <button 
-            onClick={() => {
-              alert('Please send me an email at: souptiksinha1@gmail.com');
-            }}
-            className="inline-block px-8 py-4 bg-white text-black font-semibold rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+          <a 
+            href="mailto:souptiksinha1@gmail.com?subject=Let's work together!&body=Hi Souptik,%0D%0A%0D%0AI'd like to discuss a project opportunity with you.%0D%0A%0D%0ABest regards,"
+            className="inline-block w-full sm:w-auto px-6 lg:px-8 py-3 lg:py-4 bg-white text-black font-semibold rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer touch-manipulation min-h-[48px] flex items-center justify-center text-center"
           >
             Send me a message
-          </button>
+          </a>
         </div>
       </motion.div>
     </div>

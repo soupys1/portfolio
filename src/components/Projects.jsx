@@ -23,6 +23,7 @@ const projects = [
     tech: ['React', 'Vite', 'Node.js', 'Express', 'Supabase', 'Postgres', 'JWT'],
     image: joinahackImg,
     github: 'https://github.com/soupys1/socialMedia_frontend',
+    backend: 'https://github.com/soupys1/socialMedia_backend',
     website: 'https://social-media-frontend-black-five.vercel.app/',
     featured: true,
   },
@@ -39,7 +40,8 @@ const projects = [
     title: 'Health Chat Bot - ML',
     desc: 'Built full-stack AI chatbot with Python Flask backend using Hugging Face RoBERTa model for sentiment analysis and React frontend. Created RESTful API using Flask for real-time sentiment analysis.',
     tech: ['Python', 'Flask', 'Hugging Face', 'RoBERTa', 'React'],
-    github: 'https://github.com/soupys1/chatbotbackend',
+    github: 'https://github.com/soupys1/chatbot-frontend',
+    backend: 'https://github.com/soupys1/chatbotbackend',
     featured: false,
   },
 ];
@@ -48,7 +50,7 @@ const Projects = () => {
   const featuredProjects = projects.filter(p => p.featured);
 
   return (
-    <section className="py-32 bg-gradient-to-br from-black via-gray-900 to-black" id="projects">
+    <section className="py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-black via-gray-900 to-black" id="projects">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -56,12 +58,12 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 lg:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Featured Works
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto px-4 sm:px-0">
             Here is a selection of my most recent works. Navigate through projects to explore each one in detail.
           </p>
         </motion.div>
@@ -72,7 +74,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-16 lg:mb-20"
         >
           <ProjectsCarousel projects={featuredProjects} />
         </motion.div>
@@ -83,14 +85,14 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 lg:mb-12"
         >
-          <h3 className="text-3xl font-bold text-white mb-4">All Projects</h3>
-          <p className="text-gray-300">Additional works and experiments</p>
+          <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">All Projects</h3>
+          <p className="text-gray-300 text-sm lg:text-base">Additional works and experiments</p>
         </motion.div>
 
         {/* All Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -98,13 +100,13 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 p-6 group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+              className="relative overflow-hidden rounded-xl lg:rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 p-4 sm:p-6 group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
             >
-              <h4 className="text-xl font-bold text-white mb-3">{project.title}</h4>
-              <p className="text-gray-300 text-sm mb-4 line-clamp-3">{project.desc}</p>
+              <h4 className="text-lg lg:text-xl font-bold text-white mb-2 lg:mb-3">{project.title}</h4>
+              <p className="text-gray-300 text-sm mb-3 lg:mb-4 line-clamp-2 lg:line-clamp-3">{project.desc}</p>
               
               {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-1.5 lg:gap-2 mb-4 lg:mb-6">
                 {project.tech.slice(0, 3).map(tech => (
                   <span 
                     key={tech} 
@@ -121,21 +123,21 @@ const Projects = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <a 
                   href={project.github} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex-1 px-3 py-2 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 transition-colors duration-200 text-sm text-center"
+                  className="flex-1 px-3 py-2.5 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 active:scale-95 transition-all duration-200 text-sm text-center touch-manipulation min-h-[44px] flex items-center justify-center"
                 >
-                  Frontend
+                  GitHub
                 </a>
                 {project.backend && (
                   <a 
                     href={project.backend} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex-1 px-3 py-2 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 transition-colors duration-200 text-sm text-center"
+                    className="flex-1 px-3 py-2.5 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 active:scale-95 transition-all duration-200 text-sm text-center touch-manipulation min-h-[44px] flex items-center justify-center"
                   >
                     Backend
                   </a>
@@ -145,7 +147,7 @@ const Projects = () => {
                     href={project.website} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex-1 px-3 py-2 border border-gray-600 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm text-center"
+                    className="flex-1 px-3 py-2.5 border border-gray-600 text-white font-medium rounded-lg hover:bg-gray-800 active:scale-95 transition-all duration-200 text-sm text-center touch-manipulation min-h-[44px] flex items-center justify-center"
                   >
                     Demo
                   </a>
@@ -161,12 +163,12 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-12 lg:mt-16"
         >
-          <p className="text-gray-300 mb-6">Have a project in mind?</p>
+          <p className="text-gray-300 mb-4 lg:mb-6 text-sm lg:text-base">Have a project in mind?</p>
           <a 
             href="#contact" 
-            className="inline-block px-8 py-4 bg-white text-black font-semibold rounded-lg hover:scale-105 transition-transform duration-300"
+            className="inline-block w-full sm:w-auto px-6 lg:px-8 py-3 lg:py-4 bg-white text-black font-semibold rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation min-h-[48px] flex items-center justify-center max-w-sm mx-auto sm:max-w-none"
           >
             Let's talk about it!
           </a>
