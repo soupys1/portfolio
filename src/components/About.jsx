@@ -5,7 +5,7 @@ const DETAILS = [
   ['currently', 'building full-stack products'],
   ['focus', 'web apps · ml · real-time'],
   ['stack', 'react · next.js · python · flask'],
-  ['based in', 'india — open to remote'],
+  ['based in', 'chicago, il'],
 ];
 
 const About = () => {
@@ -26,7 +26,7 @@ const About = () => {
       >
         {/* left: statement */}
         <motion.div {...entry(0)}>
-          <span className="mono" style={{ display: 'block', marginBottom: 38, color: 'var(--white-50)' }}>02 — about</span>
+          <span className="mono" style={{ display: 'block', marginBottom: 38, color: 'var(--white-50)' }}>02 about</span>
           <p style={{
             margin: 0,
             fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)',
@@ -37,7 +37,7 @@ const About = () => {
           }}>
             i design and build at the seam where{' '}
             <em style={{ color: '#fff', fontStyle: 'italic' }}>engineering meets craft</em>
-            {' '}— from python and flask backends serving ml models to responsive, accessible react interfaces. i care about the details that make software feel{' '}
+            {' '}from python and flask backends serving ml models to responsive, accessible react interfaces. i care about the details that make software feel{' '}
             <em style={{ color: '#fff', fontStyle: 'italic' }}>considered</em>.
           </p>
         </motion.div>

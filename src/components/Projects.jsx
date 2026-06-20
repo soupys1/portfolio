@@ -9,30 +9,6 @@ import crmImg from '../assets/pulse.png';
 const WORK = [
   {
     n: '01',
-    title: 'ml football predictions',
-    desc: 'full-stack ml app predicting match outcomes — a python flask backend serving the model, react front end for live stats.',
-    year: '2025',
-    image: footballImg,
-    href: 'https://ml-football-predictions-frontend.vercel.app/',
-  },
-  {
-    n: '02',
-    title: 'joinahack',
-    desc: 'social platform to showcase projects and find hackathon teammates — realtime messaging, jwt auth, supabase + postgres.',
-    year: '2024',
-    image: joinahackImg,
-    href: 'https://social-media-frontend-black-five.vercel.app/',
-  },
-  {
-    n: '03',
-    title: 'converso',
-    desc: 'ai learning app with personalised real-time voice tutors, built on next.js and vapi with a responsive, accessible ui.',
-    year: '2024',
-    image: conversoImg,
-    href: 'https://saas-app-lemon.vercel.app/',
-  },
-  {
-    n: '04',
     title: 'ai travel companion',
     desc: 'full-stack ai-powered travel companion for personalised trip planning and real-time destination recommendations.',
     year: '2025',
@@ -40,12 +16,36 @@ const WORK = [
     href: 'https://travel-companion-frontend-sandy.vercel.app/',
   },
   {
-    n: '05',
+    n: '02',
     title: 'crm platform',
     desc: 'full-stack customer relationship management platform with lead tracking, pipeline management, and analytics dashboard.',
     year: '2025',
     image: crmImg,
     href: 'https://crm-frontend-nu-gold.vercel.app/login',
+  },
+  {
+    n: '03',
+    title: 'ml football predictions',
+    desc: 'full-stack ml app predicting match outcomes with a python flask backend serving the model and react front end for live stats.',
+    year: '2025',
+    image: footballImg,
+    href: 'https://ml-football-predictions-frontend.vercel.app/',
+  },
+  {
+    n: '04',
+    title: 'joinahack',
+    desc: 'social platform to showcase projects and find hackathon teammates, realtime messaging, jwt auth, supabase and postgres.',
+    year: '2024',
+    image: joinahackImg,
+    href: 'https://social-media-frontend-black-five.vercel.app/',
+  },
+  {
+    n: '05',
+    title: 'converso',
+    desc: 'ai learning app with personalised real-time voice tutors, built on next.js and vapi with a responsive, accessible ui.',
+    year: '2024',
+    image: conversoImg,
+    href: 'https://saas-app-lemon.vercel.app/',
   },
 ];
 

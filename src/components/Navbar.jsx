@@ -53,7 +53,7 @@ const Navbar = () => {
 
         {/* right: clock + availability */}
         <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: 14, color: 'var(--white-50)', fontSize: 12 }}>
-          <span className="nav-clock-hide">ind {fmt(now, 'Asia/Kolkata')}</span>
+          <span className="nav-clock-hide">chi {fmt(now, 'America/Chicago')}</span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
             <span
               className="mote"

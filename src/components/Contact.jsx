@@ -29,7 +29,7 @@ const Contact = () => {
 
         {/* eyebrow + headline */}
         <motion.div {...entry(0)}>
-          <span className="mono" style={{ display: 'block', marginBottom: 30, color: 'var(--white-50)' }}>03 — let's connect</span>
+          <span className="mono" style={{ display: 'block', marginBottom: 30, color: 'var(--white-50)' }}>03 let's connect</span>
           <h2 style={{ margin: 0, lineHeight: 0.95, fontSize: 'clamp(2.6rem, 9vw, 8rem)', letterSpacing: '-0.035em' }}>
             <span className="grad-text" style={{ fontWeight: 900 }}>let's build </span>
             <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic' }}>something</span>

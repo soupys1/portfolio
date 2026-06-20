@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useClock, fmt } from '../hooks/useClock';
 
-const CLOCKS = [['ind', 'Asia/Kolkata'], ['lon', 'Europe/London'], ['nyc', 'America/New_York']];
+const CLOCKS = [['chi', 'America/Chicago'], ['lon', 'Europe/London'], ['nyc', 'America/New_York']];
 const MOTES = [['14%', '26%', '0s'], ['84%', '34%', '1.4s'], ['70%', '72%', '2.6s'], ['22%', '76%', '3.4s']];
 
 const Hero = () => {
@@ -47,7 +47,7 @@ const Hero = () => {
         <motion.div className="mono" style={{ display: 'flex', flexWrap: 'wrap', gap: 18, marginBottom: 38 }} {...entry(0)}>
           <span>full-stack developer</span>
           <span style={{ color: 'var(--white-20)' }}>/</span>
-          <span>selected work — 2026</span>
+          <span>selected work / 2026</span>
           <span style={{ color: 'var(--white-20)' }}>/</span>
           {CLOCKS.map(([c, tz]) => (
             <span key={c} style={{ color: 'var(--white-40)' }}>{c} {fmt(now, tz)}</span>
@@ -70,7 +70,7 @@ const Hero = () => {
             {...entry(0.16)}
             style={{ margin: 0, fontSize: 'clamp(1rem, 2.2vw, 1.2rem)', lineHeight: 1.6, color: 'var(--zinc-400)', maxWidth: 460 }}
           >
-            i'm souptik sinha — a developer building modern, impactful web applications where{' '}
+            i'm souptik sinha, a developer building modern, impactful web applications where{' '}
             <em style={{ color: 'var(--white-90)', fontStyle: 'italic' }}>engineering meets craft</em>.
           </motion.p>
 
