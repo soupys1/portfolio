@@ -1,111 +1,91 @@
 import React from 'react';
-import Typewriter from 'typewriter-effect';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useClock, fmt } from '../hooks/useClock';
+
+const CLOCKS = [['ind', 'Asia/Kolkata'], ['lon', 'Europe/London'], ['nyc', 'America/New_York']];
+const MOTES = [['14%', '26%', '0s'], ['84%', '34%', '1.4s'], ['70%', '72%', '2.6s'], ['22%', '76%', '3.4s']];
 
 const Hero = () => {
+  const now = useClock();
+  const prefersReduced = useReducedMotion();
+
+  const entry = (delay = 0) => ({
+    initial: { opacity: 0, y: prefersReduced ? 0 : 26 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: prefersReduced ? 0 : delay },
+  });
+
   return (
-    <section className="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden" id="home">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-2 h-2 bg-white/20 rounded-full animate-float" style={{ animationDelay: '0s' }}></div>
-        <div className="absolute top-40 right-20 w-1 h-1 bg-white/30 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-40 left-20 w-1.5 h-1.5 bg-white/15 rounded-full animate-float" style={{ animationDelay: '4s' }}></div>
-        <div className="absolute bottom-20 right-10 w-1 h-1 bg-white/25 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-      </div>
+    <header
+      id="top"
+      style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden', background: '#000' }}
+    >
+      {/* radial glow */}
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 44%, #151515 0%, #000 60%)' }} />
 
-      <div className="container-custom relative z-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-4xl mx-auto"
+      {/* grid overlay */}
+      <div style={{
+        position: 'absolute', inset: 0, opacity: 0.4,
+        backgroundImage: 'linear-gradient(var(--white-05) 1px, transparent 1px), linear-gradient(90deg, var(--white-05) 1px, transparent 1px)',
+        backgroundSize: '72px 72px',
+        WebkitMaskImage: 'radial-gradient(circle at 50% 44%, #000 0%, transparent 68%)',
+        maskImage: 'radial-gradient(circle at 50% 44%, #000 0%, transparent 68%)',
+      }} />
+
+      {/* floating motes */}
+      {MOTES.map(([l, t, d], i) => (
+        <span
+          key={i}
+          className="mote"
+          style={{ position: 'absolute', left: l, top: t, width: 4, height: 4, borderRadius: 99, background: 'var(--white-30)', animation: 'float 6s ease-in-out infinite', animationDelay: d }}
+        />
+      ))}
+
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px', position: 'relative', paddingTop: 110, paddingBottom: 80, width: '100%' }}>
+
+        {/* eyebrow */}
+        <motion.div className="mono" style={{ display: 'flex', flexWrap: 'wrap', gap: 18, marginBottom: 38 }} {...entry(0)}>
+          <span>full-stack developer</span>
+          <span style={{ color: 'var(--white-20)' }}>/</span>
+          <span>selected work — 2026</span>
+          <span style={{ color: 'var(--white-20)' }}>/</span>
+          {CLOCKS.map(([c, tz]) => (
+            <span key={c} style={{ color: 'var(--white-40)' }}>{c} {fmt(now, tz)}</span>
+          ))}
+        </motion.div>
+
+        {/* headline */}
+        <motion.h1
+          {...entry(0.08)}
+          style={{ margin: 0, lineHeight: 0.92, fontSize: 'clamp(3rem, 11vw, 10rem)', letterSpacing: '-0.035em' }}
         >
-          {/* Main Heading */}
-          <h1 className="text-gradient font-black mb-4 sm:mb-6 text-balance text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-            Crafting Digital
-            <br />
-            <span className="text-white">Experiences</span>
-          </h1>
+          <span className="grad-text" style={{ fontWeight: 900, display: 'block' }}>crafting</span>
+          <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic', display: 'block', letterSpacing: '-0.02em' }}>digital</span>
+          <span className="grad-text" style={{ fontWeight: 900, display: 'block' }}>experiences</span>
+        </motion.h1>
 
-          {/* Subtitle */}
+        {/* sub row */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: 32, marginTop: 54 }}>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-lg sm:text-xl md:text-2xl text-white/70 mb-6 sm:mb-8 max-w-2xl mx-auto font-light px-4 sm:px-0"
+            {...entry(0.16)}
+            style={{ margin: 0, fontSize: 'clamp(1rem, 2.2vw, 1.2rem)', lineHeight: 1.6, color: 'var(--zinc-400)', maxWidth: 460 }}
           >
-            I'm <span className="font-semibold text-white">Souptik Sinha</span>, a Full Stack Developer
-            <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>passionate about building modern, impactful web applications
+            i'm souptik sinha — a developer building modern, impactful web applications where{' '}
+            <em style={{ color: 'var(--white-90)', fontStyle: 'italic' }}>engineering meets craft</em>.
           </motion.p>
 
-          {/* Typewriter Effect */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="mb-8 sm:mb-12 px-4 sm:px-0"
+          <motion.a
+            href="#work"
+            className="mono"
+            {...entry(0.24)}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 12, color: '#fff', textDecoration: 'none', fontSize: 12, borderBottom: '1px solid var(--white-30)', paddingBottom: 8 }}
           >
-            <Typewriter
-              options={{
-                strings: [
-                  'Full Stack Developer',
-                  'React Specialist',
-                  'Node.js Developer',
-                  'Problem Solver'
-                ],
-                autoStart: true,
-                loop: true,
-                delay: 80,
-                deleteSpeed: 50,
-                pauseFor: 2000,
-                wrapperClassName: 'text-xl sm:text-2xl md:text-3xl font-semibold text-white/90 text-center',
-                cursorClassName: 'text-xl sm:text-2xl md:text-3xl font-semibold text-white'
-              }}
-            />
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 sm:px-0"
-          >
-            <a 
-              href="#projects" 
-              className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95 touch-manipulation min-h-[48px] flex items-center justify-center text-center"
-            >
-              <span className="relative z-10">View My Work</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white to-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
-            
-            <a 
-              href="#contact" 
-              className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation min-h-[48px] flex items-center justify-center text-center"
-            >
-              Get In Touch
-            </a>
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:flex"
-          >
-            <div className="flex flex-col items-center text-white/50 text-sm">
-              <span className="mb-2">Scroll</span>
-              <div className="w-0.5 h-8 bg-white/30 rounded-full">
-                <div className="w-full h-2 bg-white/60 rounded-full animate-bounce"></div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+            view selected work →
+          </motion.a>
+        </div>
       </div>
-    </section>
+    </header>
   );
 };
 
-export default Hero; 
+export default Hero;

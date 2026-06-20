@@ -4,6 +4,62 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --white-05: rgba(255,255,255,0.05);
+  --white-10: rgba(255,255,255,0.10);
+  --white-20: rgba(255,255,255,0.20);
+  --white-30: rgba(255,255,255,0.30);
+  --white-40: rgba(255,255,255,0.40);
+  --white-50: rgba(255,255,255,0.50);
+  --white-60: rgba(255,255,255,0.60);
+  --white-70: rgba(255,255,255,0.70);
+  --white-80: rgba(255,255,255,0.80);
+  --white-90: rgba(255,255,255,0.90);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --mono: ui-monospace, SFMono-Regular, Menlo, "Roboto Mono", monospace;
+  --zinc-400: #a1a1aa;
+  --gradient-text: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--white-50);
+  font-variant-numeric: tabular-nums;
+}
+
+.grad-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* work-thumb: inline image shown on mobile, hidden on desktop */
+.work-thumb { display: none; }
+
+@media (max-width: 900px) {
+  .nav-links { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+  .work-cursor { display: none !important; }
+  .work-thumb { display: block !important; }
+  .about-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (min-width: 901px) {
+  .mobile-menu-btn { display: none !important; }
+}
+
+@media (max-width: 560px) {
+  .nav-clock-hide { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mote { animation: none !important; }
+}
+
 @layer base {
   * {
     margin: 0;
