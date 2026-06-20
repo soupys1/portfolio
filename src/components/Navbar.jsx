@@ -52,7 +52,7 @@ const Navbar = () => {
         borderBottom: `1px solid ${scrolled ? 'var(--white-10)' : 'transparent'}`,
       }}
     >
-      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px', height: 74, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 var(--rail-px)', height: 74, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* wordmark */}
         <a href="#top" style={{ color: 'var(--fg)', textDecoration: 'none', fontWeight: 600, letterSpacing: '-0.01em', fontSize: 15 }}>
           Souptik Sinha
@@ -83,7 +83,7 @@ const Navbar = () => {
                 className="mote"
                 style={{ width: 6, height: 6, borderRadius: 99, background: 'var(--fg)', display: 'inline-block', animation: 'float 4s ease-in-out infinite', flexShrink: 0 }}
               />
-              Available
+              <span className="nav-avail-text">Available</span>
             </span>
           </div>
 

@@ -19,10 +19,10 @@ const About = () => {
   });
 
   return (
-    <section id="about" style={{ padding: '130px 0', borderTop: '1px solid var(--white-10)' }}>
+    <section id="about" style={{ padding: 'var(--section-py) 0', borderTop: '1px solid var(--white-10)' }}>
       <div
         className="about-grid"
-        style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px', display: 'grid', gridTemplateColumns: 'minmax(0,1.55fr) minmax(0,1fr)', gap: 'clamp(40px, 6vw, 100px)' }}
+        style={{ maxWidth: 1400, margin: '0 auto', padding: '0 var(--rail-px)', display: 'grid', gridTemplateColumns: 'minmax(0,1.55fr) minmax(0,1fr)', gap: 'clamp(40px, 6vw, 100px)' }}
       >
         {/* left: statement */}
         <motion.div {...entry(0)}>

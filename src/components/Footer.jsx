@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => (
   <footer style={{ borderTop: '1px solid var(--white-10)', padding: '30px 0' }}>
-    <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px', display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className="footer-inner" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 var(--rail-px)' }}>
       <span className="mono" style={{ color: 'var(--white-50)' }}>© 2026 Souptik Sinha</span>
       <a
         href="#top"

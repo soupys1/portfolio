@@ -34,8 +34,8 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" style={{ padding: '130px 0 110px', borderTop: '1px solid var(--white-10)' }}>
-      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px' }}>
+    <section id="contact" style={{ padding: 'var(--section-py) 0 var(--contact-pb)', borderTop: '1px solid var(--white-10)' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 var(--rail-px)' }}>
 
         {/* eyebrow + headline */}
         <motion.div {...entry(0)}>
@@ -47,7 +47,7 @@ const Contact = () => {
         </motion.div>
 
         {/* sub row */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: 40, marginTop: 64 }}>
+        <div className="contact-sub">
 
           {/* pill button */}
           <motion.a
@@ -66,7 +66,7 @@ const Contact = () => {
           </motion.a>
 
           {/* social rows */}
-          <motion.div {...entry(0.2)} style={{ display: 'grid', gap: 2, minWidth: 280 }}>
+          <motion.div {...entry(0.2)} className="contact-socials" style={{ display: 'grid', gap: 2, minWidth: 280 }}>
             {SOCIALS.map(([k, v, h]) => (
               <a
                 key={k}

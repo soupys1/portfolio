@@ -71,8 +71,8 @@ const Projects = () => {
   });
 
   return (
-    <section id="work" style={{ padding: '130px 0' }} onMouseMove={handleMouseMove}>
-      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px' }}>
+    <section id="work" style={{ padding: 'var(--section-py) 0' }} onMouseMove={handleMouseMove}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 var(--rail-px)' }}>
 
         {/* header */}
         <motion.div
@@ -104,19 +104,17 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
+                  className="work-row"
                   style={{
-                    display: 'grid',
-                    gridTemplateColumns: '56px 1fr auto',
-                    alignItems: 'start',
-                    gap: 'clamp(16px, 3vw, 48px)',
-                    padding: 'clamp(26px, 3.6vw, 46px) 0',
+                    gap: 'clamp(12px, 3vw, 48px)',
+                    padding: 'clamp(20px, 3.6vw, 46px) 0',
                     textDecoration: 'none',
                     transition: 'opacity .4s var(--ease)',
                     opacity: isDimmed ? 0.3 : 1,
                   }}
                 >
                   {/* index */}
-                  <span className="mono" style={{ fontSize: 13, color: 'var(--white-40)', paddingTop: 10 }}>{w.n}</span>
+                  <span className="work-index mono" style={{ fontSize: 13, color: 'var(--white-40)', paddingTop: 10 }}>{w.n}</span>
 
                   {/* title + desc */}
                   <span style={{ display: 'block' }}>

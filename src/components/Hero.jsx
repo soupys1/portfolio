@@ -41,10 +41,10 @@ const Hero = () => {
         />
       ))}
 
-      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px', position: 'relative', paddingTop: 110, paddingBottom: 80, width: '100%' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', paddingLeft: 'var(--rail-px)', paddingRight: 'var(--rail-px)', paddingTop: 'var(--hero-pt)', paddingBottom: 'var(--section-py)', position: 'relative', width: '100%' }}>
 
         {/* eyebrow */}
-        <motion.div className="mono" style={{ display: 'flex', flexWrap: 'wrap', gap: 18, marginBottom: 38 }} {...entry(0)}>
+        <motion.div className="mono hero-eyebrow" style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }} {...entry(0)}>
           <span>Full-Stack Developer</span>
           <span style={{ color: 'var(--white-20)' }}>/</span>
           <span>Selected Work / 2026</span>
@@ -65,7 +65,7 @@ const Hero = () => {
         </motion.h1>
 
         {/* sub row */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: 32, marginTop: 54 }}>
+        <div className="hero-sub">
           <motion.p
             {...entry(0.16)}
             style={{ margin: 0, fontSize: 'clamp(1rem, 2.2vw, 1.2rem)', lineHeight: 1.6, color: 'var(--zinc-400)', maxWidth: 460 }}
