@@ -53,7 +53,7 @@ const Footer = () => (
               </svg>
             </a>
             <a 
-              href="https://linkedin.com/in/souptik-sinha" 
+              href="https://www.linkedin.com/in/souptik-sinha-0774641ba/"
               target="_blank" 
               rel="noopener noreferrer"
               className="w-10 h-10 sm:w-10 sm:h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 active:bg-white/30 transition-colors duration-300 touch-manipulation"
@@ -63,7 +63,7 @@ const Footer = () => (
               </svg>
             </a>
             <a 
-              href="mailto:souptiksinha1@gmail.com"
+              href="mailto:souptiksinha73@gmail.com"
               className="w-10 h-10 sm:w-10 sm:h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 active:bg-white/30 transition-colors duration-300 touch-manipulation"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

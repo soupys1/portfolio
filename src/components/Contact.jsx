@@ -9,8 +9,8 @@ const contactMethods = [
       </svg>
     ),
     label: 'Email',
-    value: 'souptiksinha1@gmail.com',
-    href: 'mailto:souptiksinha1@gmail.com',
+    value: 'souptiksinha73@gmail.com',
+    href: 'mailto:souptiksinha73@gmail.com',
   },
   {
     icon: (
@@ -107,7 +107,7 @@ const Contact = () => (
             Let's discuss your project requirements and timeline.
           </p>
           <a 
-            href="mailto:souptiksinha1@gmail.com?subject=Let's work together!&body=Hi Souptik,%0D%0A%0D%0AI'd like to discuss a project opportunity with you.%0D%0A%0D%0ABest regards,"
+            href="mailto:souptiksinha73@gmail.com?subject=Let's work together!&body=Hi Souptik,%0D%0A%0D%0AI'd like to discuss a project opportunity with you.%0D%0A%0D%0ABest regards,"
             className="inline-block w-full sm:w-auto px-6 lg:px-8 py-3 lg:py-4 bg-white text-black font-semibold rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer touch-manipulation min-h-[48px] flex items-center justify-center text-center"
           >
             Send me a message
