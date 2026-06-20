@@ -2,10 +2,10 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 const DETAILS = [
-  ['currently', 'building full-stack products'],
-  ['focus', 'web apps · ml · real-time'],
-  ['stack', 'react · next.js · python · flask'],
-  ['based in', 'chicago, il'],
+  ['currently', 'Building full-stack products'],
+  ['focus', 'React · RAG · AI Models · Backend'],
+  ['stack', 'React · Next.js · Node.js · Python'],
+  ['based in', 'Chicago, IL'],
 ];
 
 const About = () => {
@@ -26,7 +26,7 @@ const About = () => {
       >
         {/* left: statement */}
         <motion.div {...entry(0)}>
-          <span className="mono" style={{ display: 'block', marginBottom: 38, color: 'var(--white-50)' }}>02 about</span>
+          <span className="mono" style={{ display: 'block', marginBottom: 38, color: 'var(--white-50)' }}>02 About</span>
           <p style={{
             margin: 0,
             fontSize: 'clamp(1.4rem, 3.2vw, 2.4rem)',
@@ -35,9 +35,9 @@ const About = () => {
             letterSpacing: '-0.02em',
             color: 'var(--white-90)',
           }}>
-            i design and build at the seam where{' '}
+            I design and build full-stack products where{' '}
             <em style={{ color: '#fff', fontStyle: 'italic' }}>engineering meets craft</em>
-            {' '}from python and flask backends serving ml models to responsive, accessible react interfaces. i care about the details that make software feel{' '}
+            {', '}combining strong Node.js and Python backends with RAG pipelines and AI-powered React interfaces. I care about the details that make software feel{' '}
             <em style={{ color: '#fff', fontStyle: 'italic' }}>considered</em>.
           </p>
         </motion.div>

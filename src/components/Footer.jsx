@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => (
   <footer style={{ borderTop: '1px solid var(--white-10)', padding: '30px 0' }}>
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px', display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'space-between', alignItems: 'center' }}>
-      <span className="mono" style={{ color: 'var(--white-50)' }}>© 2026 souptik sinha</span>
+      <span className="mono" style={{ color: 'var(--white-50)' }}>© 2026 Souptik Sinha</span>
       <a
         href="#top"
         className="mono"
@@ -11,9 +11,8 @@ const Footer = () => (
         onMouseEnter={e => e.currentTarget.style.color = '#fff'}
         onMouseLeave={e => e.currentTarget.style.color = 'var(--white-60)'}
       >
-        back to top ↑
+        Back to Top ↑
       </a>
-      <span className="mono" style={{ color: 'var(--white-50)' }}>designed &amp; built with care</span>
     </div>
   </footer>
 );

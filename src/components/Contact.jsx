@@ -29,10 +29,10 @@ const Contact = () => {
 
         {/* eyebrow + headline */}
         <motion.div {...entry(0)}>
-          <span className="mono" style={{ display: 'block', marginBottom: 30, color: 'var(--white-50)' }}>03 let's connect</span>
+          <span className="mono" style={{ display: 'block', marginBottom: 30, color: 'var(--white-50)' }}>03 Let's Connect</span>
           <h2 style={{ margin: 0, lineHeight: 0.95, fontSize: 'clamp(2.6rem, 9vw, 8rem)', letterSpacing: '-0.035em' }}>
-            <span className="grad-text" style={{ fontWeight: 900 }}>let's build </span>
-            <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic' }}>something</span>
+            <span className="grad-text" style={{ fontWeight: 900 }}>Let's Build </span>
+            <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic' }}>Something</span>
           </h2>
         </motion.div>
 
@@ -48,7 +48,7 @@ const Contact = () => {
             onMouseEnter={e => e.currentTarget.style.background = 'var(--white-10)'}
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
-            send me a message{' '}
+            Send Me a Message{' '}
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>

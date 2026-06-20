@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useClock, fmt } from '../hooks/useClock';
 
 const NAV_LINKS = [
-  ['work', '#work', '01'],
-  ['about', '#about', '02'],
-  ['contact', '#contact', '03'],
+  ['Work', '#work', '01'],
+  ['About', '#about', '02'],
+  ['Contact', '#contact', '03'],
 ];
 
 const Navbar = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 48px', height: 74, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* wordmark */}
         <a href="#top" style={{ color: '#fff', textDecoration: 'none', fontWeight: 600, letterSpacing: '-0.01em', fontSize: 15 }}>
-          souptik sinha
+          Souptik Sinha
         </a>
 
         {/* center nav — hidden ≤900px */}

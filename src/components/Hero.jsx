@@ -45,9 +45,9 @@ const Hero = () => {
 
         {/* eyebrow */}
         <motion.div className="mono" style={{ display: 'flex', flexWrap: 'wrap', gap: 18, marginBottom: 38 }} {...entry(0)}>
-          <span>full-stack developer</span>
+          <span>Full-Stack Developer</span>
           <span style={{ color: 'var(--white-20)' }}>/</span>
-          <span>selected work / 2026</span>
+          <span>Selected Work / 2026</span>
           <span style={{ color: 'var(--white-20)' }}>/</span>
           {CLOCKS.map(([c, tz]) => (
             <span key={c} style={{ color: 'var(--white-40)' }}>{c} {fmt(now, tz)}</span>
@@ -59,9 +59,9 @@ const Hero = () => {
           {...entry(0.08)}
           style={{ margin: 0, lineHeight: 0.92, fontSize: 'clamp(3rem, 11vw, 10rem)', letterSpacing: '-0.035em' }}
         >
-          <span className="grad-text" style={{ fontWeight: 900, display: 'block' }}>crafting</span>
-          <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic', display: 'block', letterSpacing: '-0.02em' }}>digital</span>
-          <span className="grad-text" style={{ fontWeight: 900, display: 'block' }}>experiences</span>
+          <span className="grad-text" style={{ fontWeight: 900, display: 'block' }}>Crafting</span>
+          <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic', display: 'block', letterSpacing: '-0.02em' }}>Digital</span>
+          <span className="grad-text" style={{ fontWeight: 900, display: 'block' }}>Experiences</span>
         </motion.h1>
 
         {/* sub row */}
@@ -70,7 +70,7 @@ const Hero = () => {
             {...entry(0.16)}
             style={{ margin: 0, fontSize: 'clamp(1rem, 2.2vw, 1.2rem)', lineHeight: 1.6, color: 'var(--zinc-400)', maxWidth: 460 }}
           >
-            i'm souptik sinha, a developer building modern, impactful web applications where{' '}
+            I'm Souptik Sinha, a developer building modern, impactful web applications where{' '}
             <em style={{ color: 'var(--white-90)', fontStyle: 'italic' }}>engineering meets craft</em>.
           </motion.p>
 
@@ -80,7 +80,7 @@ const Hero = () => {
             {...entry(0.24)}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 12, color: '#fff', textDecoration: 'none', fontSize: 12, borderBottom: '1px solid var(--white-30)', paddingBottom: 8 }}
           >
-            view selected work →
+            View Selected Work →
           </motion.a>
         </div>
       </div>
