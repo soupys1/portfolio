@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 const SOCIALS = [
@@ -15,13 +15,23 @@ const Arrow = () => (
 
 const Contact = () => {
   const prefersReduced = useReducedMotion();
+  const [btnLabel, setBtnLabel] = useState('Send Me a Message');
 
   const entry = (delay = 0) => ({
     initial: { opacity: 0, y: prefersReduced ? 0 : 26 },
     whileInView: { opacity: 1, y: 0 },
     transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: prefersReduced ? 0 : delay },
-    viewport: { once: true, margin: '-12%' },
+    viewport: { once: true, margin: '0px' },
   });
+
+  const handleEmailClick = (e) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText('souptiksinha73@gmail.com').catch(() => {});
+    }
+    setBtnLabel('Email Copied!');
+    setTimeout(() => setBtnLabel('Send Me a Message'), 2500);
+    // Let the href handle mailto naturally — don't preventDefault
+  };
 
   return (
     <section id="contact" style={{ padding: '130px 0 110px', borderTop: '1px solid var(--white-10)' }}>
@@ -43,12 +53,13 @@ const Contact = () => {
           <motion.a
             href="mailto:souptiksinha73@gmail.com"
             className="mono"
+            onClick={handleEmailClick}
             {...entry(0.12)}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 14, color: '#fff', textDecoration: 'none', fontSize: 13, padding: '16px 26px', border: '1px solid var(--white-30)', borderRadius: 99, transition: 'background .3s var(--ease)' }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 14, color: 'var(--fg)', textDecoration: 'none', fontSize: 13, padding: '16px 26px', border: '1px solid var(--white-30)', borderRadius: 99, transition: 'background .3s var(--ease)' }}
             onMouseEnter={e => e.currentTarget.style.background = 'var(--white-10)'}
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
-            Send Me a Message{' '}
+            {btnLabel}{' '}
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
@@ -63,7 +74,7 @@ const Contact = () => {
                 target={k !== 'email' ? '_blank' : undefined}
                 rel={k !== 'email' ? 'noopener noreferrer' : undefined}
                 style={{ display: 'grid', gridTemplateColumns: '94px 1fr auto', gap: 18, alignItems: 'center', padding: '12px 0', textDecoration: 'none', color: 'var(--white-70)', borderBottom: '1px solid var(--white-10)', transition: 'color .3s var(--ease)' }}
-                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--fg)'}
                 onMouseLeave={e => e.currentTarget.style.color = 'var(--white-70)'}
               >
                 <span className="mono" style={{ color: 'var(--white-40)' }}>{k}</span>

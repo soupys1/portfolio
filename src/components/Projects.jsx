@@ -79,7 +79,7 @@ const Projects = () => {
           {...entry(0)}
           style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 16 }}
         >
-          <h2 style={{ margin: 0, fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.025em', color: '#fff' }}>
+          <h2 style={{ margin: 0, fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--fg)' }}>
             selected work
           </h2>
           <span className="mono" style={{ color: 'var(--white-50)' }}>
@@ -125,7 +125,7 @@ const Projects = () => {
                       fontSize: 'clamp(1.7rem, 4.6vw, 3.4rem)',
                       fontWeight: 800,
                       letterSpacing: '-0.03em',
-                      color: '#fff',
+                      color: 'var(--fg)',
                       transition: 'transform .4s var(--ease)',
                       transform: isActive ? 'translateX(16px)' : 'none',
                     }}>
@@ -149,7 +149,7 @@ const Projects = () => {
                   <span style={{ display: 'flex', alignItems: 'center', gap: 'clamp(14px, 2.4vw, 34px)', justifySelf: 'end', paddingTop: 10 }}>
                     <span className="mono" style={{ color: 'var(--white-40)' }}>{w.year}</span>
                     <span style={{
-                      color: isActive ? '#fff' : 'var(--white-40)',
+                      color: isActive ? 'var(--fg)' : 'var(--white-40)',
                       transition: 'color .3s var(--ease), transform .4s var(--ease)',
                       transform: isActive ? 'translateX(6px)' : 'none',
                       display: 'inline-flex',

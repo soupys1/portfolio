@@ -36,9 +36,9 @@ const About = () => {
             color: 'var(--white-90)',
           }}>
             I design and build full-stack products where{' '}
-            <em style={{ color: '#fff', fontStyle: 'italic' }}>engineering meets craft</em>
+            <em style={{ color: 'var(--fg)', fontStyle: 'italic' }}>engineering meets craft</em>
             {', '}combining strong Node.js and Python backends with RAG pipelines and AI-powered React interfaces. I care about the details that make software feel{' '}
-            <em style={{ color: '#fff', fontStyle: 'italic' }}>considered</em>.
+            <em style={{ color: 'var(--fg)', fontStyle: 'italic' }}>considered</em>.
           </p>
         </motion.div>
 

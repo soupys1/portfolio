@@ -18,18 +18,18 @@ const Hero = () => {
   return (
     <header
       id="top"
-      style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden', background: '#000' }}
+      style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden', background: 'var(--bg)' }}
     >
       {/* radial glow */}
-      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 44%, #151515 0%, #000 60%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'var(--hero-radial)' }} />
 
       {/* grid overlay */}
       <div style={{
         position: 'absolute', inset: 0, opacity: 0.4,
         backgroundImage: 'linear-gradient(var(--white-05) 1px, transparent 1px), linear-gradient(90deg, var(--white-05) 1px, transparent 1px)',
         backgroundSize: '72px 72px',
-        WebkitMaskImage: 'radial-gradient(circle at 50% 44%, #000 0%, transparent 68%)',
-        maskImage: 'radial-gradient(circle at 50% 44%, #000 0%, transparent 68%)',
+        WebkitMaskImage: 'radial-gradient(circle at 50% 44%, var(--bg) 0%, transparent 68%)',
+        maskImage: 'radial-gradient(circle at 50% 44%, var(--bg) 0%, transparent 68%)',
       }} />
 
       {/* floating motes */}
@@ -78,7 +78,7 @@ const Hero = () => {
             href="#work"
             className="mono"
             {...entry(0.24)}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 12, color: '#fff', textDecoration: 'none', fontSize: 12, borderBottom: '1px solid var(--white-30)', paddingBottom: 8 }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 12, color: 'var(--fg)', textDecoration: 'none', fontSize: 12, borderBottom: '1px solid var(--white-30)', paddingBottom: 8 }}
           >
             View Selected Work →
           </motion.a>
