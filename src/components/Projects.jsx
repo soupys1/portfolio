@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 import ProjectsCarousel from './ProjectsCarousel';
 import joinahackImg from '../assets/joinahack.PNG';
 import conversoImg from '../assets/converso.PNG';
-import footballImg from '../assets/football.PNG';  
+import footballImg from '../assets/football.PNG';
+import aiCompanionImg from '../assets/AIcompanion.png';
+import crmImg from '../assets/pulse.png';
 
 const projects = [
   {
@@ -34,6 +36,26 @@ const projects = [
     image: conversoImg,
     github: 'https://github.com/soupys1/saas-ai-tutor',
     website: 'https://saas-app-lemon.vercel.app/',
+    featured: true,
+  },
+  {
+    title: 'AI Travel Companion',
+    desc: 'Full-stack AI-powered travel companion app that helps users plan trips, discover destinations, and get personalised travel recommendations in real time. Features a conversational AI interface backed by a Node.js/Express API.',
+    tech: ['React', 'Node.js', 'Express', 'AI', 'Vercel'],
+    image: aiCompanionImg,
+    github: 'https://github.com/soupys1/TravelCompanion-backend',
+    backend: 'https://github.com/soupys1/TravelCompanion-backend',
+    website: 'https://travel-companion-frontend-sandy.vercel.app/',
+    featured: true,
+  },
+  {
+    title: 'CRM Platform',
+    desc: 'Full-stack Customer Relationship Management platform with lead tracking, pipeline management, and analytics dashboard. Built with a React frontend and a Node.js/Express backend with secure authentication.',
+    tech: ['React', 'Node.js', 'Express', 'CRM', 'Vercel'],
+    image: crmImg,
+    github: 'https://github.com/soupys1/crm-backend',
+    backend: 'https://github.com/soupys1/crm-backend',
+    website: 'https://crm-frontend-nu-gold.vercel.app/login',
     featured: true,
   },
   {
