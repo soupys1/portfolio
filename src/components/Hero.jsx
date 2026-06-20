@@ -59,9 +59,9 @@ const Hero = () => {
           {...entry(0.08)}
           style={{ margin: 0, lineHeight: 0.92, fontSize: 'clamp(3rem, 11vw, 10rem)', letterSpacing: '-0.035em' }}
         >
-          <span className="grad-text" style={{ fontWeight: 900, display: 'block' }}>Crafting</span>
-          <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic', display: 'block', letterSpacing: '-0.02em' }}>Digital</span>
-          <span className="grad-text" style={{ fontWeight: 900, display: 'block' }}>Experiences</span>
+          <span className="grad-text" style={{ fontWeight: 900, display: 'block', paddingBottom: '0.12em' }}>Crafting</span>
+          <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic', display: 'block', letterSpacing: '-0.02em', paddingBottom: '0.12em' }}>Digital</span>
+          <span className="grad-text" style={{ fontWeight: 900, display: 'block', paddingBottom: '0.12em' }}>Experiences</span>
         </motion.h1>
 
         {/* sub row */}

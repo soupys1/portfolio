@@ -37,11 +37,11 @@
 }
 
 [data-theme="light"] {
-  --bg: #f4f3ee;
+  --bg: #f5f0e8;
   --fg: #111111;
-  --nav-bg: rgba(244,243,238,0.88);
-  --menu-bg: rgba(244,243,238,0.97);
-  --hero-radial: radial-gradient(circle at 50% 44%, #e8e7e0 0%, #f4f3ee 70%);
+  --nav-bg: rgba(245,240,232,0.88);
+  --menu-bg: rgba(245,240,232,0.97);
+  --hero-radial: radial-gradient(circle at 50% 44%, #ede5d6 0%, #f5f0e8 70%);
   --zinc-400: #71717a;
   --gradient-text: linear-gradient(135deg, #111111 0%, #71717a 100%);
   --white-05: rgba(0,0,0,0.04);
@@ -70,6 +70,8 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  padding-bottom: 0.12em; /* extend paint box so descenders (g, p, y) aren't clipped by background-clip */
+  display: inline-block;  /* inline-block respects padding-bottom on spans */
 }
 
 /* work-thumb: inline image shown on mobile, hidden on desktop */
