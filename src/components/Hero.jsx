@@ -89,7 +89,7 @@ export default function Hero() {
           color:         '#fff',
         }}>
           <span style={{ display: 'block' }}>Crafting</span>
-          <span style={{ display: 'block', color: 'var(--accent)', fontStyle: 'italic' }}>Digital</span>
+          <span style={{ display: 'block', color: '#38bdf8', fontStyle: 'italic' }}>Digital</span>
           <span style={{ display: 'block' }}>Experiences</span>
         </h1>
 

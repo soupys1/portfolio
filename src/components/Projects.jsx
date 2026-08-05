@@ -7,9 +7,9 @@ import footballImg    from '../assets/football.PNG';
 import joinahackImg   from '../assets/joinahack.PNG';
 import conversoImg    from '../assets/converso.PNG';
 
-const ACCENT      = '#c084fc';
+const ACCENT      = '#ff3d57';
 const CARD_SHADOW = '0 25px 50px -12px rgba(0,0,0,.7)';
-const CARD_HOVER  = `0 46px 80px -14px rgba(0,0,0,.85), 0 0 0 1px ${ACCENT}, 0 26px 60px -10px ${ACCENT}`;
+const CARD_HOVER  = `0 46px 80px -14px rgba(0,0,0,.85), 0 0 0 1px rgba(255,61,87,.6), 0 26px 60px -10px rgba(255,61,87,.5)`;
 
 const WORK = [
   { n: '01', title: 'AI Travel Companion',     tag: 'AI · Full-stack',  year: '2025', image: aiCompanionImg, href: 'https://travel-companion-frontend-sandy.vercel.app/' },
