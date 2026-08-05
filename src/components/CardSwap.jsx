@@ -60,6 +60,8 @@ const CardSwap = ({
     const total = refs.length;
     refs.forEach((r, i) => placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount));
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const swap = () => {
       if (order.current.length < 2) return;
       const [front, ...rest] = order.current;
