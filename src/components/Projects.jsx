@@ -1,11 +1,15 @@
-import { useState } from 'react';
 import gsap from 'gsap';
 import CardSwap, { Card } from './CardSwap';
+
+import aiCompanionImg from '../assets/AIcompanion.png';
+import crmImg         from '../assets/pulse.png';
 import footballImg    from '../assets/football.PNG';
 import joinahackImg   from '../assets/joinahack.PNG';
 import conversoImg    from '../assets/converso.PNG';
-import aiCompanionImg from '../assets/AIcompanion.png';
-import crmImg         from '../assets/pulse.png';
+
+const ACCENT      = '#c084fc';
+const CARD_SHADOW = '0 25px 50px -12px rgba(0,0,0,.7)';
+const CARD_HOVER  = `0 46px 80px -14px rgba(0,0,0,.85), 0 0 0 1px ${ACCENT}, 0 26px 60px -10px ${ACCENT}`;
 
 const WORK = [
   { n: '01', title: 'AI Travel Companion',     tag: 'AI · Full-stack',  year: '2025', image: aiCompanionImg, href: 'https://travel-companion-frontend-sandy.vercel.app/' },
@@ -15,125 +19,118 @@ const WORK = [
   { n: '05', title: 'Converso',                tag: 'AI · Voice',       year: '2024', image: conversoImg,    href: 'https://saas-app-lemon.vercel.app/' },
 ];
 
-function ProjectRow({ w }) {
-  const [hovered, setHovered] = useState(false);
+function ProjectCard({ p }) {
   return (
     <a
-      href={w.href}
+      href={p.href}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       style={{
-        display: 'grid',
-        gridTemplateColumns: '34px 1fr auto',
-        alignItems: 'center',
-        gap: 20,
-        padding: '18px 0',
-        paddingLeft: hovered ? 10 : 0,
-        borderBottom: '1px solid rgba(255,255,255,.1)',
-        textDecoration: 'none',
-        transition: 'padding-left .25s ease-out',
+        display: 'flex', flexDirection: 'column',
+        width: '100%', height: '100%',
+        overflow: 'hidden', background: '#141118', borderRadius: 14,
+        border: '1px solid rgba(255,255,255,.22)', boxShadow: CARD_SHADOW,
+        textDecoration: 'none', color: '#f4f1f8',
+        transition: 'border-color .2s ease-out, box-shadow .25s ease-out',
       }}
     >
-      <span style={{ fontSize: 13, color: 'rgba(245,245,246,.4)', fontWeight: 400 }}>{w.n}</span>
-      <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: hovered ? '#ff3d57' : '#fff', transition: 'color .25s ease-out' }}>
-        {w.title}
-      </span>
-      <span style={{ fontSize: 18, color: hovered ? '#ff3d57' : 'rgba(245,245,246,.4)', transition: 'color .25s ease-out', lineHeight: 1 }}>↗</span>
+      {/* fake title bar */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 8,
+        padding: '12px 16px', borderBottom: '1px solid rgba(255,255,255,.12)', flexShrink: 0,
+      }}>
+        <span style={{ width: 9, height: 9, borderRadius: 999, background: ACCENT }} />
+        <span style={{ width: 9, height: 9, borderRadius: 999, background: 'rgba(255,255,255,.2)' }} />
+        <span style={{ width: 9, height: 9, borderRadius: 999, background: 'rgba(255,255,255,.2)' }} />
+        <span style={{
+          marginLeft: 'auto', fontSize: 11, fontWeight: 700,
+          letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(244,241,248,.4)',
+        }}>
+          {p.year}
+        </span>
+      </div>
+
+      {/* screenshot */}
+      <img
+        src={p.image}
+        alt={p.title}
+        style={{ width: '100%', flex: 1, minHeight: 0, objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+      />
+
+      {/* footer */}
+      <div style={{ padding: '14px 18px 16px', borderTop: '1px solid rgba(255,255,255,.12)', flexShrink: 0 }}>
+        <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em', color: '#f4f1f8' }}>{p.title}</div>
+        <div style={{ fontSize: 13, color: ACCENT, marginTop: 4 }}>{p.tag}</div>
+      </div>
     </a>
   );
 }
 
-function ProjectCard({ w }) {
-  const handleMouseEnter = (e) => {
-    gsap.to(e.currentTarget, {
-      scale: 1.14, y: '-=26', duration: 0.32,
-      ease: 'back.out(2.4)', overwrite: 'auto',
-    });
-    e.currentTarget.style.borderColor = '#ff3d57';
-    e.currentTarget.style.boxShadow =
-      '0 46px 80px -14px rgba(0,0,0,.85), 0 0 0 1px rgba(255,61,87,.6), 0 26px 60px -10px rgba(255,61,87,.6)';
-  };
-
-  const handleMouseLeave = (e) => {
-    gsap.to(e.currentTarget, {
-      scale: 1, y: '+=26', duration: 0.32,
-      ease: 'power2.out', overwrite: 'auto',
-    });
-    e.currentTarget.style.borderColor = 'rgba(255,255,255,.22)';
-    e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(0,0,0,.7)';
-  };
-
-  return (
-    <Card onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <a
-        href={w.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', textDecoration: 'none' }}
-      >
-        {/* Fake browser title bar */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 6,
-          padding: '12px 16px', borderBottom: '1px solid rgba(255,255,255,.12)',
-          flexShrink: 0,
-        }}>
-          <span style={{ width: 9, height: 9, borderRadius: 99, background: '#ff3d57', flexShrink: 0 }} />
-          <span style={{ width: 9, height: 9, borderRadius: 99, background: 'rgba(255,255,255,.2)', flexShrink: 0 }} />
-          <span style={{ width: 9, height: 9, borderRadius: 99, background: 'rgba(255,255,255,.2)', flexShrink: 0 }} />
-          <span style={{ marginLeft: 'auto', fontSize: 11, color: 'rgba(245,245,246,.4)', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase' }}>
-            {w.year}
-          </span>
-        </div>
-
-        {/* Screenshot */}
-        <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
-          <img
-            src={w.image}
-            alt={w.title}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
-          />
-        </div>
-
-        {/* Footer */}
-        <div style={{ padding: '14px 18px 16px', borderTop: '1px solid rgba(255,255,255,.12)', flexShrink: 0 }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em', marginBottom: 2 }}>{w.title}</div>
-          <div style={{ fontSize: 13, color: '#ff3d57', fontWeight: 600 }}>{w.tag}</div>
-        </div>
-      </a>
-    </Card>
-  );
-}
+const enterCard = e => {
+  gsap.to(e.currentTarget, { scale: 1.14, y: '-=26', duration: 0.32, ease: 'back.out(2.4)', overwrite: 'auto' });
+  const inner = e.currentTarget.firstElementChild;
+  if (inner) { inner.style.borderColor = ACCENT; inner.style.boxShadow = CARD_HOVER; }
+};
+const leaveCard = e => {
+  gsap.to(e.currentTarget, { scale: 1, y: '+=26', duration: 0.32, ease: 'power2.out', overwrite: 'auto' });
+  const inner = e.currentTarget.firstElementChild;
+  if (inner) { inner.style.borderColor = 'rgba(255,255,255,.22)'; inner.style.boxShadow = CARD_SHADOW; }
+};
 
 export default function Projects() {
   return (
     <section id="work" style={{ borderTop: '1px solid rgba(255,255,255,.1)', overflow: 'hidden' }}>
 
-      {/* Desktop: two-column grid */}
+      {/* ── desktop: two-column grid ── */}
       <div
-        className="work-two-col"
+        className="work-grid"
         style={{
           maxWidth: 1280, margin: '0 auto', padding: '96px 40px',
           display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
           gap: 120, alignItems: 'center',
         }}
       >
-        {/* Left: project index */}
+        {/* left: index */}
         <div>
-          <div className="eyebrow" style={{ marginBottom: 24 }}>01 Selected work — 05 projects</div>
+          <span style={{
+            display: 'block', fontSize: 11, fontWeight: 700, letterSpacing: '.08em',
+            textTransform: 'uppercase', color: ACCENT, marginBottom: 22,
+          }}>
+            01 Selected work — 05 projects
+          </span>
+
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 60px)', fontWeight: 700,
-            letterSpacing: '-0.02em', color: '#fff', marginBottom: 48, lineHeight: 1.1,
+            letterSpacing: '-0.02em', color: '#fff', margin: '0 0 36px',
           }}>
             Things I've built
           </h2>
+
           <div style={{ borderTop: '1px solid rgba(255,255,255,.1)' }}>
-            {WORK.map(w => <ProjectRow key={w.n} w={w} />)}
+            {WORK.map(p => (
+              <a
+                key={p.n}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'grid', gridTemplateColumns: '34px 1fr auto', alignItems: 'center', gap: 18,
+                  padding: '18px 0', borderBottom: '1px solid rgba(255,255,255,.1)',
+                  textDecoration: 'none', color: '#f4f1f8',
+                  transition: 'padding-left .25s ease-out, color .25s ease-out',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.paddingLeft = '10px'; e.currentTarget.style.color = ACCENT; }}
+                onMouseLeave={e => { e.currentTarget.style.paddingLeft = '0px';  e.currentTarget.style.color = '#f4f1f8'; }}
+              >
+                <span style={{ fontSize: 13, color: 'rgba(244,241,248,.4)' }}>{p.n}</span>
+                <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.01em', color: 'inherit' }}>{p.title}</span>
+                <span style={{ fontSize: 17, color: 'inherit' }}>↗</span>
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Right: card stack */}
+        {/* right: card stack — width+(count-1)*cardDistance = 300+4*34 = 436px */}
         <div
           className="card-swap-col"
           style={{
@@ -151,39 +148,53 @@ export default function Projects() {
             easing="elastic"
             pauseOnHover
           >
-            {WORK.map(w => <ProjectCard key={w.n} w={w} />)}
+            {WORK.map(p => (
+              <Card
+                key={p.n}
+                style={{ background: 'transparent', border: 'none', boxShadow: 'none' }}
+                onMouseEnter={enterCard}
+                onMouseLeave={leaveCard}
+              >
+                <ProjectCard p={p} />
+              </Card>
+            ))}
           </CardSwap>
         </div>
       </div>
 
-      {/* Mobile: stacked list */}
+      {/* ── mobile: stacked list ── */}
       <div
         className="work-cards-mobile"
-        style={{ flexDirection: 'column', gap: 16, padding: '48px 24px 80px', maxWidth: 640, margin: '0 auto' }}
+        style={{ flexDirection: 'column', gap: 14, padding: '48px 24px 80px', maxWidth: 560, margin: '0 auto' }}
       >
-        <div className="eyebrow" style={{ marginBottom: 20 }}>01 Selected work</div>
+        <span style={{
+          display: 'block', fontSize: 11, fontWeight: 700, letterSpacing: '.08em',
+          textTransform: 'uppercase', color: ACCENT, marginBottom: 16,
+        }}>
+          01 Selected work
+        </span>
         <h2 style={{
           fontSize: 'clamp(28px, 7vw, 40px)', fontWeight: 700,
-          letterSpacing: '-0.02em', color: '#fff', marginBottom: 32, lineHeight: 1.1,
+          letterSpacing: '-0.02em', color: '#fff', marginBottom: 28, lineHeight: 1.1,
         }}>
           Things I've built
         </h2>
-        {WORK.map(w => (
+        {WORK.map(p => (
           <a
-            key={w.n}
-            href={w.href}
+            key={p.n}
+            href={p.href}
             target="_blank"
             rel="noopener noreferrer"
             style={{
               display: 'flex', flexDirection: 'column', borderRadius: 12,
-              overflow: 'hidden', background: '#141416',
+              overflow: 'hidden', background: '#141118',
               border: '1px solid rgba(255,255,255,.22)', textDecoration: 'none',
             }}
           >
-            <img src={w.image} alt={w.title} style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', objectPosition: 'top' }} />
+            <img src={p.image} alt={p.title} style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', objectPosition: 'top' }} />
             <div style={{ padding: '12px 16px' }}>
-              <div style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>{w.title}</div>
-              <div style={{ fontSize: 12, color: '#ff3d57', marginTop: 4 }}>{w.tag}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#f4f1f8' }}>{p.title}</div>
+              <div style={{ fontSize: 12, color: ACCENT, marginTop: 4 }}>{p.tag}</div>
             </div>
           </a>
         ))}
