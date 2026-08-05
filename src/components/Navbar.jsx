@@ -1,137 +1,138 @@
-import React, { useState, useEffect } from 'react';
-import { useClock, fmt } from '../hooks/useClock';
+import { useState, useEffect } from 'react';
 
 const NAV_LINKS = [
-  ['Work', '#work', '01'],
-  ['About', '#about', '02'],
-  ['Contact', '#contact', '03'],
+  ['Work',  '#work'],
+  ['About', '#about'],
 ];
 
-const SunIcon = () => (
-  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-  </svg>
-);
-
-const MoonIcon = () => (
-  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-  </svg>
-);
-
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
-  const now = useClock();
+export default function Navbar() {
+  const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [btnLabel,  setBtnLabel]  = useState('Contact');
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
+  const copyEmail = (e) => {
+    e.preventDefault();
+    navigator.clipboard?.writeText('souptiksinha73@gmail.com').catch(() => {});
+    setBtnLabel('Email copied!');
+    setTimeout(() => setBtnLabel('Contact'), 2200);
+  };
 
   return (
-    <nav
-      style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-        transition: 'background .4s var(--ease), border-color .4s var(--ease), backdrop-filter .4s var(--ease)',
-        background: scrolled ? 'var(--nav-bg)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(14px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
-        borderBottom: `1px solid ${scrolled ? 'var(--white-10)' : 'transparent'}`,
-      }}
-    >
-      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 var(--rail-px)', height: 74, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* wordmark */}
-        <a href="#top" style={{ color: 'var(--fg)', textDecoration: 'none', fontWeight: 600, letterSpacing: '-0.01em', fontSize: 15 }}>
-          Souptik Sinha
+    <nav style={{
+      position:             'fixed',
+      top: 0, left: 0, right: 0,
+      zIndex:               50,
+      height:               72,
+      background:           scrolled ? 'rgba(10,10,11,.72)' : 'transparent',
+      backdropFilter:       scrolled ? 'blur(14px)' : 'none',
+      WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
+      borderBottom:         scrolled ? '1px solid rgba(255,255,255,.08)' : '1px solid transparent',
+      transition:           'background .35s, border-color .35s',
+    }}>
+      <div style={{
+        maxWidth:       1280,
+        margin:         '0 auto',
+        padding:        '0 40px',
+        height:         '100%',
+        display:        'flex',
+        alignItems:     'center',
+        justifyContent: 'space-between',
+      }}>
+        {/* Mark + wordmark */}
+        <a href="#top" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{
+            width: 20, height: 20,
+            background: 'var(--accent)',
+            borderRadius: 3,
+            display: 'inline-block',
+            flexShrink: 0,
+          }} />
+          <span style={{ color: '#fff', fontWeight: 700, fontSize: 15, letterSpacing: '-0.01em' }}>
+            Souptik Sinha
+          </span>
         </a>
 
-        {/* center nav — hidden ≤900px */}
-        <div className="nav-links" style={{ display: 'flex', gap: 40 }}>
-          {NAV_LINKS.map(([label, href, n]) => (
+        {/* Desktop links */}
+        <div className="nav-links" style={{ display: 'flex', gap: 36, alignItems: 'center' }}>
+          {NAV_LINKS.map(([label, href]) => (
             <a
               key={label}
               href={href}
-              className="mono"
-              style={{ color: 'var(--white-60)', textDecoration: 'none', fontSize: 12, display: 'inline-flex', gap: 8, alignItems: 'baseline', transition: 'color .3s var(--ease)' }}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--fg)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'var(--white-60)'}
+              style={{ color: 'var(--body-strong)', textDecoration: 'none', fontSize: 14, fontWeight: 600, transition: 'color .2s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--body-strong)'}
             >
-              <span style={{ color: 'var(--white-30)' }}>{n}</span>{label}
+              {label}
             </a>
           ))}
         </div>
 
-        {/* right: clock + availability + theme toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: 14, color: 'var(--white-50)', fontSize: 12 }}>
-            <span className="nav-clock-hide">chi {fmt(now, 'America/Chicago')}</span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
-              <span
-                className="mote"
-                style={{ width: 6, height: 6, borderRadius: 99, background: 'var(--fg)', display: 'inline-block', animation: 'float 4s ease-in-out infinite', flexShrink: 0 }}
-              />
-              <span className="nav-avail-text">Available</span>
-            </span>
-          </div>
-
-          {/* theme toggle */}
-          <button
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            style={{ background: 'none', border: '1px solid var(--white-20)', borderRadius: 8, cursor: 'pointer', padding: '6px 8px', color: 'var(--white-60)', display: 'flex', alignItems: 'center', transition: 'border-color .3s var(--ease), color .3s var(--ease)' }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--white-50)'; e.currentTarget.style.color = 'var(--fg)'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--white-20)'; e.currentTarget.style.color = 'var(--white-60)'; }}
+        {/* Right: Contact pill + hamburger */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <a
+            href="mailto:souptiksinha73@gmail.com"
+            onClick={copyEmail}
+            className="nav-links"
+            style={{
+              display: 'inline-flex', alignItems: 'center',
+              padding: '8px 18px',
+              background: 'var(--accent)',
+              color: '#fff',
+              textDecoration: 'none',
+              fontSize: 13, fontWeight: 700,
+              borderRadius: 99,
+              transition: 'opacity .2s',
+              whiteSpace: 'nowrap',
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = '0.82'}
+            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
           >
-            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-          </button>
+            {btnLabel}
+          </a>
 
-          {/* hamburger — shown ≤900px */}
           <button
-            onClick={() => setIsMenuOpen(o => !o)}
-            aria-label="Toggle menu"
             className="mobile-menu-btn"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
             style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, flexDirection: 'column', gap: 5, alignItems: 'flex-end' }}
           >
-            <span style={{ display: 'block', width: 22, height: 1, background: 'var(--fg)', transition: 'all .3s var(--ease)', transform: isMenuOpen ? 'translateY(6px) rotate(45deg)' : '' }} />
-            <span style={{ display: 'block', width: 14, height: 1, background: 'var(--fg)', transition: 'opacity .3s', opacity: isMenuOpen ? 0 : 1 }} />
-            <span style={{ display: 'block', width: 22, height: 1, background: 'var(--fg)', transition: 'all .3s var(--ease)', transform: isMenuOpen ? 'translateY(-6px) rotate(-45deg)' : '' }} />
+            <span style={{ display: 'block', width: 22, height: 1.5, background: '#fff', transition: 'all .25s', transform: menuOpen ? 'translateY(6.5px) rotate(45deg)' : '' }} />
+            <span style={{ display: 'block', width: 14, height: 1.5, background: '#fff', transition: 'opacity .25s', opacity: menuOpen ? 0 : 1 }} />
+            <span style={{ display: 'block', width: 22, height: 1.5, background: '#fff', transition: 'all .25s', transform: menuOpen ? 'translateY(-6.5px) rotate(-45deg)' : '' }} />
           </button>
         </div>
       </div>
 
-      {/* mobile dropdown */}
-      {isMenuOpen && (
-        <div style={{ borderTop: '1px solid var(--white-10)', background: 'var(--menu-bg)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)' }}>
-          {NAV_LINKS.map(([label, href, n]) => (
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <div style={{ background: 'rgba(10,10,11,.96)', backdropFilter: 'blur(14px)', borderTop: '1px solid var(--hairline)' }}>
+          {NAV_LINKS.map(([label, href]) => (
             <a
               key={label}
               href={href}
-              onClick={() => setIsMenuOpen(false)}
-              className="mono"
-              style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '18px 24px', color: 'var(--white-60)', textDecoration: 'none', borderBottom: '1px solid var(--white-05)', transition: 'color .3s var(--ease)', fontSize: 14 }}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--fg)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'var(--white-60)'}
+              onClick={() => setMenuOpen(false)}
+              style={{ display: 'block', padding: '16px 40px', color: 'var(--body-strong)', textDecoration: 'none', fontSize: 15, fontWeight: 600, borderBottom: '1px solid var(--hairline)' }}
             >
-              <span style={{ color: 'var(--white-30)' }}>{n}</span>{label}
+              {label}
             </a>
           ))}
+          <div style={{ padding: '16px 40px' }}>
+            <a
+              href="mailto:souptiksinha73@gmail.com"
+              onClick={(e) => { copyEmail(e); setMenuOpen(false); }}
+              style={{ display: 'inline-block', padding: '8px 18px', background: 'var(--accent)', color: '#fff', textDecoration: 'none', fontSize: 13, fontWeight: 700, borderRadius: 99 }}
+            >
+              {btnLabel}
+            </a>
+          </div>
         </div>
       )}
     </nav>
   );
-};
-
-export default Navbar;
+}
