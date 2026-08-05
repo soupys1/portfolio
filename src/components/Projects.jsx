@@ -1,5 +1,4 @@
-import { useState, useRef } from 'react';
-import gsap from 'gsap';
+import { useState } from 'react';
 import CardSwap, { Card } from './CardSwap';
 import footballImg    from '../assets/football.PNG';
 import joinahackImg   from '../assets/joinahack.PNG';
@@ -46,52 +45,28 @@ function ProjectRow({ w }) {
 }
 
 function ProjectCard({ w }) {
-  const ref = useRef(null);
-
-  const onEnter = () => {
-    gsap.to(ref.current, {
-      scale: 1.08, y: '-=18', duration: 0.32, ease: 'back.out(2.4)', overwrite: 'auto',
-      borderColor: '#ff3d57',
-      boxShadow: '0 40px 70px -14px rgba(0,0,0,.85), 0 0 0 1px rgba(255,61,87,.5), 0 20px 50px -10px rgba(255,61,87,.5)',
-    });
-  };
-
-  const onLeave = () => {
-    gsap.to(ref.current, {
-      scale: 1, y: '+=18', duration: 0.25, ease: 'power2.out', overwrite: 'auto',
-      borderColor: 'rgba(255,255,255,.22)',
-      boxShadow: 'none',
-    });
-  };
-
   return (
     <Card>
       <a
-        ref={ref}
         href={w.href}
         target="_blank"
         rel="noopener noreferrer"
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
-        style={{
-          display: 'flex', flexDirection: 'column',
-          width: '100%', height: '100%',
-          textDecoration: 'none',
-          border: '1px solid rgba(255,255,255,.22)',
-          borderRadius: 14,
-          overflow: 'hidden',
-          willChange: 'transform',
-        }}
+        style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', textDecoration: 'none' }}
       >
+        {/* Title bar */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '10px 14px', borderBottom: '1px solid var(--hairline)', flexShrink: 0 }}>
           <span style={{ width: 9, height: 9, borderRadius: 99, background: 'var(--accent)', flexShrink: 0 }} />
           <span style={{ width: 9, height: 9, borderRadius: 99, background: 'rgba(255,255,255,.18)', flexShrink: 0 }} />
           <span style={{ width: 9, height: 9, borderRadius: 99, background: 'rgba(255,255,255,.18)', flexShrink: 0 }} />
           <span style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--muted)', fontWeight: 400 }}>{w.year}</span>
         </div>
+
+        {/* Screenshot */}
         <div style={{ flex: 1, overflow: 'hidden' }}>
           <img src={w.image} alt={w.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
         </div>
+
+        {/* Footer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', borderTop: '1px solid var(--hairline)', flexShrink: 0 }}>
           <span style={{ fontSize: 13, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>{w.title}</span>
           <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--accent)', background: 'rgba(255,61,87,.12)', padding: '3px 8px', borderRadius: 99, whiteSpace: 'nowrap' }}>
@@ -110,6 +85,7 @@ export default function Projects() {
         className="work-two-col"
         style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 120, alignItems: 'start' }}
       >
+        {/* Left: index list */}
         <div>
           <div className="eyebrow" style={{ marginBottom: 24 }}>01 Work</div>
           <h2 style={{ fontSize: 'clamp(32px, 5vw, 60px)', fontWeight: 700, letterSpacing: '-0.02em', color: '#fff', marginBottom: 48, lineHeight: 1.1 }}>
@@ -120,14 +96,31 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="card-swap-col" style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', minHeight: 600, paddingRight: 80, paddingTop: 120 }}>
-          <CardSwap width={280} height={210} cardDistance={28} verticalDistance={38} delay={2000} skewAmount={5} pauseOnHover>
+        {/* Right: CardSwap — needs position:relative so absolute container anchors here */}
+        <div
+          className="card-swap-col"
+          style={{ position: 'relative', minHeight: 600 }}
+        >
+          <CardSwap
+            width={280}
+            height={210}
+            cardDistance={40}
+            verticalDistance={55}
+            delay={3000}
+            skewAmount={4}
+            easing="elastic"
+            pauseOnHover
+          >
             {WORK.map(w => <ProjectCard key={w.n} w={w} />)}
           </CardSwap>
         </div>
       </div>
 
-      <div className="work-cards-mobile" style={{ display: 'none', gridTemplateColumns: '1fr 1fr', gap: 16, padding: '0 40px 96px', maxWidth: 1280, margin: '0 auto' }}>
+      {/* Mobile card grid */}
+      <div
+        className="work-cards-mobile"
+        style={{ display: 'none', gridTemplateColumns: '1fr 1fr', gap: 16, padding: '0 40px 96px', maxWidth: 1280, margin: '0 auto' }}
+      >
         {WORK.map(w => (
           <a key={w.n} href={w.href} target="_blank" rel="noopener noreferrer"
             style={{ display: 'flex', flexDirection: 'column', borderRadius: 12, overflow: 'hidden', background: '#141416', border: '1px solid var(--hairline)', textDecoration: 'none' }}
