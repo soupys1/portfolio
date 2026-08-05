@@ -7,11 +7,11 @@ import aiCompanionImg from '../assets/AIcompanion.png';
 import crmImg         from '../assets/pulse.png';
 
 const WORK = [
-  { n: '01', title: 'AI Travel Companion',    tag: 'AI · Full-stack',   year: '2025', image: aiCompanionImg, href: 'https://travel-companion-frontend-sandy.vercel.app/' },
-  { n: '02', title: 'CRM Platform',           tag: 'Full-stack',        year: '2025', image: crmImg,         href: 'https://crm-frontend-nu-gold.vercel.app/login' },
+  { n: '01', title: 'AI Travel Companion',    tag: 'AI · Full-stack',   year: '2026', image: aiCompanionImg, href: 'https://travel-companion-frontend-sandy.vercel.app/' },
+  { n: '02', title: 'CRM Platform',           tag: 'Full-stack',        year: '2026', image: crmImg,         href: 'https://crm-frontend-nu-gold.vercel.app/login' },
   { n: '03', title: 'ML Football Predictions',tag: 'Machine learning',  year: '2025', image: footballImg,    href: 'https://ml-football-predictions-frontend.vercel.app/' },
-  { n: '04', title: 'JoinAHack',              tag: 'Social platform',   year: '2024', image: joinahackImg,   href: 'https://social-media-frontend-black-five.vercel.app/' },
-  { n: '05', title: 'Converso',               tag: 'AI · Voice',        year: '2024', image: conversoImg,    href: 'https://saas-app-lemon.vercel.app/' },
+  { n: '04', title: 'JoinAHack',              tag: 'Social platform',   year: '2025', image: joinahackImg,   href: 'https://social-media-frontend-black-five.vercel.app/' },
+  { n: '05', title: 'Converso',               tag: 'AI · Voice',        year: '2025', image: conversoImg,    href: 'https://saas-app-lemon.vercel.app/' },
 ];
 
 function ProjectRow({ w }) {
