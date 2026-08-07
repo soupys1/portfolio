@@ -35,7 +35,7 @@ function FooterLink({ label, value, href }) {
 
 export default function Footer() {
   return (
-    <footer style={{ borderTop: '1px solid var(--hairline)' }}>
+    <footer style={{ borderTop: '1px solid var(--hairline)', background: 'var(--bg-footer)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 40px 60px' }}>
 
         {/* Big headline */}

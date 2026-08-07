@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import PillNav from './PillNav';
 
-// Red square mark as inline SVG data URL
-const LOGO = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect width='20' height='20' rx='3' fill='%23ff3d57'/%3E%3C/svg%3E";
+const LOGO = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect width='20' height='20' rx='3' fill='%238b5cf6'/%3E%3C/svg%3E";
 
 export default function Navbar() {
   const [contactLabel, setContactLabel] = useState('Contact');
@@ -25,10 +24,10 @@ export default function Navbar() {
       logo={LOGO}
       logoAlt="Souptik Sinha"
       items={items}
-      baseColor="#141416"
-      pillColor="#1e1e21"
-      pillTextColor="rgba(245,245,246,.85)"
-      hoveredPillTextColor="#ff3d57"
+      baseColor="rgba(18,12,26,.62)"
+      pillColor="rgba(28,18,42,.85)"
+      pillTextColor="rgba(244,241,248,.78)"
+      hoveredPillTextColor="#c084fc"
       ease="power3.easeOut"
       initialLoadAnimation={false}
     />

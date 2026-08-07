@@ -1,8 +1,10 @@
-import { useReducedMotion } from 'framer-motion';
-import Strands from './Strands';
+import { useState } from 'react';
+import LightPillar from './LightPillar';
+
+const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export default function Hero() {
-  const prefersReduced = useReducedMotion();
+  const [btnHovered, setBtnHovered] = useState(false);
 
   return (
     <header
@@ -14,122 +16,152 @@ export default function Hero() {
         flexDirection:  'column',
         justifyContent: 'center',
         overflow:       'hidden',
-        background:     'var(--bg)',
+        background:     'var(--bg-hero)',
       }}
     >
-      {/* Strands canvas */}
-      {!prefersReduced && (
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.85 }}>
-          <Strands
-            colors={['#ff3d57', '#8b5cf6', '#3b5bff']}
-            count={4}
-            speed={0.45}
-            amplitude={1.15}
-            waviness={1}
-            thickness={0.7}
-            glow={2.6}
-            spread={1}
-            intensity={0.6}
-            opacity={1}
-            scale={1.5}
-          />
-        </div>
+      {/* WebGL light pillar */}
+      {!reduced && (
+        <LightPillar
+          topColor="#5b21b6"
+          bottomColor="#c084fc"
+          intensity={1.0}
+          rotationSpeed={0.3}
+          glowAmount={0.007}
+          pillarWidth={2.5}
+          pillarHeight={0.4}
+          noiseIntensity={0.3}
+          pillarRotation={18}
+          mixBlendMode="screen"
+          quality="high"
+        />
       )}
 
-      {/* Radial blob overlay */}
+      {/* Vignette — sells depth, sits above the pillar */}
       <div style={{
-        position:   'absolute',
-        inset:      0,
-        background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,61,87,.10) 0%, transparent 70%)',
+        position:      'absolute',
+        inset:         0,
+        background:    'radial-gradient(70% 55% at 50% 46%, transparent 0%, rgba(11,7,16,.55) 72%, rgba(11,7,16,.92) 100%)',
         pointerEvents: 'none',
+        zIndex:        2,
       }} />
 
       {/* Content */}
       <div style={{
-        maxWidth:    1280,
-        margin:      '0 auto',
-        padding:     '132px 40px 96px',
-        position:    'relative',
-        width:       '100%',
+        maxWidth:      1280,
+        margin:        '0 auto',
+        padding:       '130px 32px 96px',
+        position:      'relative',
+        zIndex:        10,
+        width:         '100%',
+        display:       'flex',
+        flexDirection: 'column',
+        alignItems:    'center',
+        textAlign:     'center',
       }}>
-        {/* Eyebrow row */}
+        {/* Eyebrow row — glass pills */}
         <div style={{
-          display:     'flex',
-          flexWrap:    'wrap',
-          gap:         '10px 20px',
-          alignItems:  'center',
-          marginBottom: 40,
+          display:        'flex',
+          flexWrap:       'wrap',
+          gap:            8,
+          alignItems:     'center',
+          justifyContent: 'center',
+          marginBottom:   40,
         }}>
-          <span className="eyebrow">Full-Stack Developer</span>
-          <span style={{ color: 'var(--hairline)', fontSize: 11 }}>/</span>
-          <span className="eyebrow">Selected work — 2026</span>
-          <span style={{ color: 'var(--hairline)', fontSize: 11 }}>/</span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
+          {[
+            { label: 'Full-Stack Developer' },
+            { label: 'Selected work — 2026' },
+            { label: 'Available', dot: true },
+          ].map(({ label, dot }) => (
             <span
-              className="avail-dot"
+              key={label}
               style={{
-                width: 7, height: 7,
-                borderRadius: 99,
-                background: 'var(--accent)',
-                display: 'inline-block',
-                flexShrink: 0,
+                display:         'inline-flex',
+                alignItems:      'center',
+                gap:             6,
+                padding:         '6px 14px',
+                background:      'rgba(18,12,26,.55)',
+                backdropFilter:  'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border:          '1px solid rgba(255,255,255,.12)',
+                borderRadius:    99,
+                fontSize:        11,
+                fontWeight:      700,
+                letterSpacing:   '.08em',
+                textTransform:   'uppercase',
+                color:           'rgba(244,241,248,.9)',
               }}
-            />
-            <span className="eyebrow" style={{ color: 'var(--accent)' }}>Available</span>
-          </span>
+            >
+              {dot && (
+                <span
+                  className="avail-dot"
+                  style={{
+                    width: 6, height: 6,
+                    borderRadius: 99,
+                    background: 'var(--accent)',
+                    flexShrink: 0,
+                  }}
+                />
+              )}
+              {label}
+            </span>
+          ))}
         </div>
 
-        {/* Headline */}
+        {/* Headline — all white */}
         <h1 style={{
           margin:        0,
-          fontSize:      'clamp(56px, 11vw, 150px)',
+          fontSize:      'clamp(40px, 6.4vw, 72px)',
           fontWeight:    700,
-          lineHeight:    0.92,
-          letterSpacing: '-0.035em',
-          color:         '#fff',
+          lineHeight:    1.06,
+          letterSpacing: '-0.03em',
+          color:         '#ffffff',
         }}>
           <span style={{ display: 'block' }}>Crafting</span>
-          <span style={{ display: 'block', color: '#db2777', fontStyle: 'italic' }}>Digital</span>
+          <span style={{ display: 'block', fontStyle: 'italic' }}>Digital</span>
           <span style={{ display: 'block' }}>Experiences</span>
         </h1>
 
-        {/* Sub row */}
-        <div style={{ marginTop: 48, display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 32 }}>
-          <p style={{
-            margin:     0,
-            fontSize:   20,
-            fontWeight: 600,
-            lineHeight: 1.5,
-            color:      'var(--body-strong)',
-            maxWidth:   500,
-          }}>
-            I'm Souptik Sinha, a developer building modern, impactful web applications where{' '}
-            <em style={{ color: '#fff', fontStyle: 'italic' }}>engineering meets craft</em>.
-          </p>
+        {/* Lede */}
+        <p style={{
+          margin:     '36px 0 0',
+          fontSize:   'clamp(16px, 1.6vw, 20px)',
+          fontWeight: 600,
+          lineHeight: 1.6,
+          color:      'var(--body)',
+          maxWidth:   480,
+        }}>
+          I'm Souptik Sinha, a developer building modern, impactful web applications where{' '}
+          <em style={{ color: '#ffffff', fontStyle: 'italic', fontWeight: 700 }}>engineering meets craft</em>.
+        </p>
 
-          <a
-            href="#work"
-            style={{
-              display:        'inline-flex',
-              alignItems:     'center',
-              gap:            10,
-              padding:        '12px 24px',
-              background:     'var(--accent)',
-              color:          '#fff',
-              textDecoration: 'none',
-              fontSize:       14,
-              fontWeight:     700,
-              borderRadius:   99,
-              letterSpacing:  '-0.01em',
-              transition:     'opacity .2s',
-              whiteSpace:     'nowrap',
-            }}
-            onMouseEnter={e => e.currentTarget.style.opacity = '0.82'}
-            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-          >
-            View selected work →
-          </a>
-        </div>
+        {/* CTA — white per spec */}
+        <a
+          href="#work"
+          onMouseEnter={() => setBtnHovered(true)}
+          onMouseLeave={() => setBtnHovered(false)}
+          style={{
+            display:        'inline-flex',
+            alignItems:     'center',
+            gap:            10,
+            marginTop:      40,
+            padding:        '14px 28px',
+            background:     '#ffffff',
+            color:          '#0b0710',
+            textDecoration: 'none',
+            fontSize:       14,
+            fontWeight:     700,
+            borderRadius:   99,
+            letterSpacing:  '-0.01em',
+            whiteSpace:     'nowrap',
+            transition:     'transform .18s ease-out, box-shadow .18s ease-out',
+            transform:      btnHovered ? 'translateY(-2px)' : 'translateY(0)',
+            boxShadow:      btnHovered
+              ? '0 14px 32px rgba(216,140,255,.45)'
+              : '0 0 0 rgba(216,140,255,0)',
+          }}
+        >
+          View selected work →
+        </a>
       </div>
     </header>
   );
