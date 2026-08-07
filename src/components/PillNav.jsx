@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import './PillNav.css';
+import GlassSurface from './GlassSurface';
 
 const PillNav = ({
   logo,
@@ -145,6 +146,19 @@ const PillNav = ({
   return (
     <div className="pill-nav-container">
       <nav className={`pill-nav ${className}`} aria-label="Primary" style={cssVars}>
+        {/* Glass background — see-through, clips to pill shape via overflow:hidden on .pill-nav */}
+        <GlassSurface
+          width="100%"
+          height="100%"
+          borderRadius={9999}
+          backgroundOpacity={0.04}
+          saturation={1.9}
+          distortionScale={-110}
+          brightness={52}
+          opacity={0.88}
+          blur={9}
+          style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}
+        />
         {/* Logo */}
         <a
           className="pill-logo"

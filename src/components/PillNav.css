@@ -15,7 +15,7 @@
   }
 }
 
-/* ── Metallic glass pill ── */
+/* ── Glass nav pill — GlassSurface handles the fill, this owns shape + border only ── */
 .pill-nav {
   --nav-h: 42px;
   --pill-pad-x: 18px;
@@ -25,31 +25,17 @@
   align-items: center;
   box-sizing: border-box;
   padding: 4px;
-  /* semi-transparent so background bleeds through (glass),
-     gradient angle gives the metallic light-catch */
-  background: linear-gradient(
-    158deg,
-    rgba(110, 90, 148, 0.45) 0%,
-    rgba(38, 26, 60, 0.55) 35%,
-    rgba(18, 11, 32, 0.68) 65%,
-    rgba(28, 18, 46, 0.52) 100%
-  );
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(200, 175, 255, 0.22);
+  position: relative;
+  overflow: hidden;        /* clips GlassSurface to the pill shape */
+  background: transparent;
   border-radius: 9999px;
+  border: 1px solid rgba(200, 175, 255, 0.18);
   box-shadow:
-    /* top rim — the metallic catch-light */
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.28),
-    /* bottom inner shadow — depth */
-    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
-    /* left edge sheen */
-    inset 1px 0 0 rgba(255, 255, 255, 0.08),
-    /* outer glow */
-    0 0 0 0.5px rgba(160, 130, 220, 0.35),
-    /* drop shadow */
-    0 8px 32px rgba(0, 0, 0, 0.45),
-    0 2px 8px rgba(0, 0, 0, 0.25);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 0 0 0.5px rgba(160, 130, 220, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -236,20 +222,15 @@
   top: calc(var(--nav-h) + 12px);
   left: 0;
   right: 0;
-  background: linear-gradient(
-    158deg,
-    rgba(110, 90, 148, 0.45) 0%,
-    rgba(38, 26, 60, 0.55) 35%,
-    rgba(18, 11, 32, 0.68) 100%
-  );
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(200, 175, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(200, 175, 255, 0.16);
   border-radius: 20px;
   box-shadow:
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.24),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
-    0 16px 40px rgba(0, 0, 0, 0.5);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 16px 40px rgba(0, 0, 0, 0.45);
   z-index: 998;
   opacity: 0;
   transform-origin: top center;
