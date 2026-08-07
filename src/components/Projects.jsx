@@ -63,6 +63,8 @@ function ProjectCard({ p }) {
       <img
         src={p.image}
         alt={p.title}
+        loading="lazy"
+        decoding="async"
         style={{ width: '100%', flex: 1, minHeight: 0, objectFit: 'cover', objectPosition: 'top', display: 'block' }}
       />
 
@@ -206,7 +208,7 @@ export default function Projects() {
               border: '1px solid rgba(255,255,255,.22)', textDecoration: 'none',
             }}
           >
-            <img src={p.image} alt={p.title} style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', objectPosition: 'top' }} />
+            <img src={p.image} alt={p.title} loading="lazy" decoding="async" style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', objectPosition: 'top' }} />
             <div style={{ padding: '12px 16px' }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#f4f1f8' }}>{p.title}</div>
               <div style={{ fontSize: 12, color: ACCENT, marginTop: 4 }}>{p.tag}</div>

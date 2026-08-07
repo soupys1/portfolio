@@ -4,6 +4,7 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 99;
+  will-change: transform;
 }
 
 @media (max-width: 768px) {

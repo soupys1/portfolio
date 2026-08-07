@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import LightPillar from './LightPillar';
 
 const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export default function Hero() {
-  const [btnHovered, setBtnHovered] = useState(false);
 
   return (
     <header
@@ -75,20 +73,18 @@ export default function Hero() {
             <span
               key={label}
               style={{
-                display:         'inline-flex',
-                alignItems:      'center',
-                gap:             6,
-                padding:         '6px 14px',
-                background:      'rgba(18,12,26,.55)',
-                backdropFilter:  'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border:          '1px solid rgba(255,255,255,.12)',
-                borderRadius:    99,
-                fontSize:        11,
-                fontWeight:      700,
-                letterSpacing:   '.08em',
-                textTransform:   'uppercase',
-                color:           'rgba(244,241,248,.9)',
+                display:       'inline-flex',
+                alignItems:    'center',
+                gap:           6,
+                padding:       '6px 14px',
+                background:    'rgba(12,8,20,.82)',
+                border:        '1px solid rgba(255,255,255,.12)',
+                borderRadius:  99,
+                fontSize:      11,
+                fontWeight:    700,
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                color:         'rgba(244,241,248,.9)',
               }}
             >
               {dot && (
@@ -134,11 +130,17 @@ export default function Hero() {
           <em style={{ color: '#ffffff', fontStyle: 'italic', fontWeight: 700 }}>engineering meets craft</em>.
         </p>
 
-        {/* CTA — white per spec */}
+        {/* CTA — white per spec; direct style manipulation avoids React re-render */}
         <a
           href="#work"
-          onMouseEnter={() => setBtnHovered(true)}
-          onMouseLeave={() => setBtnHovered(false)}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 14px 32px rgba(216,140,255,.45)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
           style={{
             display:        'inline-flex',
             alignItems:     'center',
@@ -154,10 +156,6 @@ export default function Hero() {
             letterSpacing:  '-0.01em',
             whiteSpace:     'nowrap',
             transition:     'transform .18s ease-out, box-shadow .18s ease-out',
-            transform:      btnHovered ? 'translateY(-2px)' : 'translateY(0)',
-            boxShadow:      btnHovered
-              ? '0 14px 32px rgba(216,140,255,.45)'
-              : '0 0 0 rgba(216,140,255,0)',
           }}
         >
           View selected work →

@@ -57,7 +57,7 @@ const LightPillar = ({
     const qualitySettings = {
       low:    { iterations: 24, waveIterations: 1, pixelRatio: 0.5,  precision: 'mediump', stepMultiplier: 1.5 },
       medium: { iterations: 40, waveIterations: 2, pixelRatio: 0.65, precision: 'mediump', stepMultiplier: 1.2 },
-      high:   { iterations: 80, waveIterations: 4, pixelRatio: Math.min(window.devicePixelRatio, 2), precision: 'highp', stepMultiplier: 1.0 },
+      high:   { iterations: 48, waveIterations: 2, pixelRatio: Math.min(window.devicePixelRatio, 1.0), precision: 'highp', stepMultiplier: 1.0 },
     };
 
     const settings = qualitySettings[effectiveQuality] || qualitySettings.medium;
@@ -227,8 +227,7 @@ const LightPillar = ({
     if (interactive) container.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     let lastTime = performance.now();
-    const targetFPS = effectiveQuality === 'low' ? 30 : 60;
-    const frameTime = 1000 / targetFPS;
+    const frameTime = 1000 / 30; // 30fps cap on all tiers — halves GPU load vs 60fps
 
     const animate = currentTime => {
       if (!materialRef.current || !rendererRef.current) return;
@@ -246,6 +245,22 @@ const LightPillar = ({
     };
     rafRef.current = requestAnimationFrame(animate);
 
+    // Pause rendering when hero is off-screen — saves full GPU budget during scroll
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!rafRef.current) {
+          lastTime = performance.now();
+          rafRef.current = requestAnimationFrame(animate);
+        }
+      } else {
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = null;
+        }
+      }
+    }, { threshold: 0 });
+    observer.observe(container);
+
     let resizeTimeout = null;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
@@ -260,6 +275,7 @@ const LightPillar = ({
     window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
+      observer.disconnect();
       window.removeEventListener('resize', handleResize);
       if (interactive) container.removeEventListener('mousemove', handleMouseMove);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
