@@ -1,4 +1,5 @@
-import LightPillar from './LightPillar';
+import { lazy, Suspense } from 'react';
+const LightPillar = lazy(() => import('./LightPillar'));
 
 const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -17,8 +18,9 @@ export default function Hero() {
         background:     'var(--bg-hero)',
       }}
     >
-      {/* WebGL light pillar */}
+      {/* WebGL light pillar — lazy so Three.js doesn't block first paint */}
       {!reduced && (
+        <Suspense fallback={null}>
         <LightPillar
           topColor="#5b21b6"
           bottomColor="#c084fc"
@@ -32,6 +34,7 @@ export default function Hero() {
           mixBlendMode="screen"
           quality="medium"
         />
+        </Suspense>
       )}
 
       {/* Vignette — sells depth, sits above the pillar */}
