@@ -19,5 +19,4 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow: hidden;
-  transition: border-color .2s ease-out, box-shadow .25s ease-out;
 }

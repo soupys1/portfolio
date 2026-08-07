@@ -41,8 +41,8 @@ const CardSwap = ({
 }) => {
   const config =
     easing === 'elastic'
-      ? { ease: 'elastic.out(0.6,0.9)', durDrop: 2, durMove: 2, durReturn: 2, promoteOverlap: 0.9, returnDelay: 0.05 }
-      : { ease: 'power1.inOut',         durDrop: 0.8, durMove: 0.8, durReturn: 0.8, promoteOverlap: 0.45, returnDelay: 0.2 };
+      ? { ease: 'power2.out', durDrop: 0.7, durMove: 0.6, durReturn: 0.65, promoteOverlap: 0.55, returnDelay: 0.1 }
+      : { ease: 'power1.inOut', durDrop: 0.8, durMove: 0.8, durReturn: 0.8, promoteOverlap: 0.45, returnDelay: 0.2 };
 
   const childArr = useMemo(() => Children.toArray(children), [children]);
   const refs     = useMemo(
@@ -64,6 +64,7 @@ const CardSwap = ({
 
     const swap = () => {
       if (order.current.length < 2) return;
+      tlRef.current?.kill();
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
       const tl = gsap.timeline();

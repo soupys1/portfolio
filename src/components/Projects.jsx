@@ -26,14 +26,23 @@ function ProjectCard({ p }) {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        display: 'flex', flexDirection: 'column',
+        display: 'flex', flexDirection: 'column', position: 'relative',
         width: '100%', height: '100%',
         overflow: 'hidden', background: '#141118', borderRadius: 14,
-        border: '1px solid rgba(255,255,255,.22)', boxShadow: CARD_SHADOW,
+        border: '1px solid rgba(255,255,255,.22)',
         textDecoration: 'none', color: '#f4f1f8',
-        transition: 'border-color .2s ease-out, box-shadow .25s ease-out',
       }}
     >
+      {/* pre-baked glow — only opacity is animated, no repaint per frame */}
+      <div
+        data-glow="1"
+        style={{
+          position: 'absolute', inset: -1, borderRadius: 14,
+          boxShadow: CARD_HOVER,
+          opacity: 0, pointerEvents: 'none',
+        }}
+      />
+
       {/* fake title bar */}
       <div style={{
         display: 'flex', alignItems: 'center', gap: 8,
@@ -69,12 +78,18 @@ function ProjectCard({ p }) {
 const enterCard = e => {
   gsap.to(e.currentTarget, { scale: 1.14, y: '-=26', duration: 0.32, ease: 'back.out(2.4)', overwrite: 'auto' });
   const inner = e.currentTarget.firstElementChild;
-  if (inner) { inner.style.borderColor = ACCENT; inner.style.boxShadow = CARD_HOVER; }
+  if (!inner) return;
+  inner.style.borderColor = ACCENT;
+  const glow = inner.querySelector('[data-glow]');
+  if (glow) gsap.to(glow, { opacity: 1, duration: 0.25, ease: 'power2.out' });
 };
 const leaveCard = e => {
   gsap.to(e.currentTarget, { scale: 1, y: '+=26', duration: 0.32, ease: 'power2.out', overwrite: 'auto' });
   const inner = e.currentTarget.firstElementChild;
-  if (inner) { inner.style.borderColor = 'rgba(255,255,255,.22)'; inner.style.boxShadow = CARD_SHADOW; }
+  if (!inner) return;
+  inner.style.borderColor = 'rgba(255,255,255,.22)';
+  const glow = inner.querySelector('[data-glow]');
+  if (glow) gsap.to(glow, { opacity: 0, duration: 0.2, ease: 'power2.out' });
 };
 
 export default function Projects() {
@@ -143,8 +158,8 @@ export default function Projects() {
             height={250}
             cardDistance={34}
             verticalDistance={42}
-            delay={2000}
-            skewAmount={5}
+            delay={3500}
+            skewAmount={0}
             easing="elastic"
             pauseOnHover
           >
