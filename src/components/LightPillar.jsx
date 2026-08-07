@@ -227,7 +227,7 @@ const LightPillar = ({
     if (interactive) container.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     let lastTime = performance.now();
-    const frameTime = 1000 / 15; // 15fps cap — pillar drift is slow enough that this is imperceptible
+    const frameTime = 1000 / 10;
 
     const animate = currentTime => {
       if (!materialRef.current || !rendererRef.current) return;
