@@ -160,7 +160,7 @@ export default function Projects() {
             height={250}
             cardDistance={34}
             verticalDistance={42}
-            delay={3500}
+            delay={1800}
             skewAmount={0}
             easing="elastic"
             pauseOnHover
