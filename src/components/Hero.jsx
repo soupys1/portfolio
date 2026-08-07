@@ -30,7 +30,7 @@ export default function Hero() {
           noiseIntensity={0.3}
           pillarRotation={18}
           mixBlendMode="screen"
-          quality="high"
+          quality="medium"
         />
       )}
 
