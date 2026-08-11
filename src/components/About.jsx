@@ -21,7 +21,7 @@ export default function About() {
       >
         {/* Left: statement */}
         <div>
-          <div className="eyebrow" style={{ marginBottom: 24 }}>02 About</div>
+          <div className="eyebrow" style={{ marginBottom: 24 }}>About</div>
           <p style={{
             margin:        0,
             fontSize:      'clamp(20px, 2.6vw, 34px)',

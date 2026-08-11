@@ -6,8 +6,8 @@ import footballImg    from '../assets/football.PNG';
 import joinahackImg   from '../assets/joinahack.PNG';
 import conversoImg    from '../assets/converso.PNG';
 
-const ACCENT      = '#c084fc';
-const CARD_HOVER  = `0 46px 80px -14px rgba(0,0,0,.85), 0 0 0 1px #c084fc, 0 26px 60px -10px #c084fc`;
+const ACCENT     = '#c084fc';
+const CARD_HOVER = `0 46px 80px -14px rgba(0,0,0,.85), 0 0 0 1px #c084fc, 0 26px 60px -10px #c084fc`;
 
 const WORK = [
   { n: '01', title: 'AI Travel Companion',     tag: 'AI · Full-stack',  year: '2026', image: aiCompanionImg, href: 'https://travel-companion-frontend-sandy.vercel.app/' },
@@ -15,13 +15,6 @@ const WORK = [
   { n: '03', title: 'ML Football Predictions', tag: 'Machine learning', year: '2025', image: footballImg,    href: 'https://ml-football-predictions-frontend.vercel.app/' },
   { n: '04', title: 'JoinAHack',               tag: 'Social platform',  year: '2025', image: joinahackImg,   href: 'https://social-media-frontend-black-five.vercel.app/' },
   { n: '05', title: 'Converso',                tag: 'AI · Voice',       year: '2025', image: conversoImg,    href: 'https://saas-app-lemon.vercel.app/' },
-];
-
-const ABOUT_DETAILS = [
-  ['currently', 'Building full-stack products'],
-  ['focus',     'React · RAG · AI Models · Backend'],
-  ['stack',     'React · Next.js · Node.js · Python'],
-  ['based in',  'Chicago, IL'],
 ];
 
 function ProjectCard({ p }) {
@@ -85,7 +78,7 @@ export default function Projects() {
   return (
     <section id="work" style={{ borderTop: '1px solid rgba(255,255,255,.1)', overflow: 'hidden' }}>
 
-      {/* ── desktop: two-column — projects list left, about right ── */}
+      {/* ── desktop: two-column grid ── */}
       <div
         className="work-grid"
         style={{
@@ -133,58 +126,19 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* right: about */}
-        <div id="about">
-          <span style={{
-            display: 'block', fontSize: 11, fontWeight: 700, letterSpacing: '.08em',
-            textTransform: 'uppercase', color: ACCENT, marginBottom: 22,
-          }}>
-            About
-          </span>
-
-          <p style={{
-            margin: '0 0 36px',
-            fontSize: 'clamp(17px, 2vw, 24px)',
-            fontWeight: 400,
-            lineHeight: 1.42,
-            letterSpacing: '-0.01em',
-            color: 'rgba(244,241,248,.78)',
-          }}>
-            I design and build full-stack products where{' '}
-            <em style={{ color: '#fff', fontStyle: 'italic' }}>engineering meets craft</em>
-            {', '}combining strong Node.js and Python backends with RAG pipelines and AI-powered React interfaces. I care about the details that make software feel{' '}
-            <em style={{ color: '#fff', fontStyle: 'italic' }}>considered</em>.
-          </p>
-
-          <div style={{ borderTop: '1px solid rgba(255,255,255,.1)' }}>
-            {ABOUT_DETAILS.map(([k, v]) => (
-              <div
-                key={k}
-                style={{
-                  display: 'grid', gridTemplateColumns: '96px 1fr', gap: 16,
-                  padding: '18px 0', borderBottom: '1px solid rgba(255,255,255,.1)',
-                }}
-              >
-                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: 'rgba(244,241,248,.4)' }}>{k}</span>
-                <span style={{ fontSize: 15, color: 'rgba(244,241,248,.78)', lineHeight: 1.5 }}>{v}</span>
-              </div>
-            ))}
-          </div>
+        {/* right: carousel */}
+        <div className="carousel-col" style={{ display: 'flex', alignItems: 'center', minHeight: 480 }}>
+          <Carousel
+            items={WORK.map(p => <ProjectCard key={p.n} p={p} />)}
+            baseWidth={300}
+            baseHeight={420}
+            autoplay={true}
+            autoplayDelay={3000}
+            pauseOnHover={true}
+            loop={true}
+            round={false}
+          />
         </div>
-      </div>
-
-      {/* ── Carousel — project cards ── */}
-      <div className="carousel-section" style={{ padding: '0 0 96px' }}>
-        <Carousel
-          items={WORK.map(p => <ProjectCard key={p.n} p={p} />)}
-          baseWidth={300}
-          baseHeight={420}
-          autoplay={true}
-          autoplayDelay={3000}
-          pauseOnHover={true}
-          loop={true}
-          round={false}
-        />
       </div>
 
       {/* ── mobile: stacked list ── */}
