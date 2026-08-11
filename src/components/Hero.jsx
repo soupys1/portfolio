@@ -70,7 +70,7 @@ export default function Hero() {
         }}>
           {[
             { label: 'Full-Stack Developer' },
-            { label: 'Selected work — 2026' },
+            { label: 'Projects' },
             { label: 'Available', dot: true },
           ].map(({ label, dot }) => (
             <span
