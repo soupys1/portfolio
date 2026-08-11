@@ -25,14 +25,14 @@ export default function Hero() {
           topColor="#5b21b6"
           bottomColor="#c084fc"
           intensity={1.0}
-          rotationSpeed={0.3}
+          rotationSpeed={0.25}
           glowAmount={0.007}
           pillarWidth={2.5}
           pillarHeight={0.4}
-          noiseIntensity={0.3}
+          noiseIntensity={0.15}
           pillarRotation={18}
           mixBlendMode="screen"
-          quality="medium"
+          quality="low"
         />
         </Suspense>
       )}

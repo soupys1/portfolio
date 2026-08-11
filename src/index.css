@@ -67,7 +67,19 @@
   0%, 100% { opacity: 1; }
   50%       { opacity: .3; }
 }
-.avail-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
+.avail-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* GPU layer promotion for animated/scrolled elements */
+.carousel-track { will-change: transform; }
+
+/* Skip layout/paint for off-screen sections */
+#work, #about, #contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
 
 /* Responsive breakpoints */
 @media (max-width: 900px) {
