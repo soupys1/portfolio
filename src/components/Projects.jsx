@@ -6,8 +6,7 @@ import footballImg    from '../assets/football.PNG';
 import joinahackImg   from '../assets/joinahack.PNG';
 import conversoImg    from '../assets/converso.PNG';
 
-const ACCENT     = '#c084fc';
-const CARD_HOVER = `0 46px 80px -14px rgba(0,0,0,.85), 0 0 0 1px #c084fc, 0 26px 60px -10px #c084fc`;
+const ACCENT = '#c084fc';
 
 const WORK = [
   { n: '01', title: 'AI Travel Companion',     tag: 'AI · Full-stack',  year: '2026', image: aiCompanionImg, href: 'https://travel-companion-frontend-sandy.vercel.app/' },
@@ -16,63 +15,6 @@ const WORK = [
   { n: '04', title: 'JoinAHack',               tag: 'Social platform',  year: '2025', image: joinahackImg,   href: 'https://social-media-frontend-black-five.vercel.app/' },
   { n: '05', title: 'Converso',                tag: 'AI · Voice',       year: '2025', image: conversoImg,    href: 'https://saas-app-lemon.vercel.app/' },
 ];
-
-function ProjectCard({ p }) {
-  return (
-    <a
-      href={p.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        display: 'flex', flexDirection: 'column', position: 'relative',
-        width: '100%', height: '100%',
-        overflow: 'hidden', background: '#141118', borderRadius: 14,
-        border: '1px solid rgba(255,255,255,.22)',
-        textDecoration: 'none', color: '#f4f1f8',
-      }}
-    >
-      <div
-        data-glow="1"
-        style={{
-          position: 'absolute', inset: -1, borderRadius: 14,
-          boxShadow: CARD_HOVER,
-          opacity: 0, pointerEvents: 'none',
-        }}
-      />
-
-      {/* title bar */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 8,
-        padding: '12px 16px', borderBottom: '1px solid rgba(255,255,255,.12)', flexShrink: 0,
-      }}>
-        <span style={{ width: 9, height: 9, borderRadius: 999, background: ACCENT }} />
-        <span style={{ width: 9, height: 9, borderRadius: 999, background: 'rgba(255,255,255,.2)' }} />
-        <span style={{ width: 9, height: 9, borderRadius: 999, background: 'rgba(255,255,255,.2)' }} />
-        <span style={{
-          marginLeft: 'auto', fontSize: 11, fontWeight: 700,
-          letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(244,241,248,.4)',
-        }}>
-          {p.year}
-        </span>
-      </div>
-
-      {/* screenshot */}
-      <img
-        src={p.image}
-        alt={p.title}
-        loading="lazy"
-        decoding="async"
-        style={{ width: '100%', flex: 1, minHeight: 0, objectFit: 'cover', objectPosition: 'top', display: 'block' }}
-      />
-
-      {/* footer */}
-      <div style={{ padding: '14px 18px 16px', borderTop: '1px solid rgba(255,255,255,.12)', flexShrink: 0 }}>
-        <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em', color: '#f4f1f8' }}>{p.title}</div>
-        <div style={{ fontSize: 13, color: ACCENT, marginTop: 4 }}>{p.tag}</div>
-      </div>
-    </a>
-  );
-}
 
 export default function Projects() {
   return (
@@ -129,9 +71,15 @@ export default function Projects() {
         {/* right: carousel */}
         <div className="carousel-col" style={{ display: 'flex', alignItems: 'center', minHeight: 480 }}>
           <Carousel
-            items={WORK.map(p => <ProjectCard key={p.n} p={p} />)}
+            items={WORK.map(p => ({
+              id:          p.n,
+              title:       p.title,
+              description: p.tag,
+              year:        p.year,
+              image:       p.image,
+              href:        p.href,
+            }))}
             baseWidth={300}
-            baseHeight={420}
             autoplay={true}
             autoplayDelay={3000}
             pauseOnHover={true}

@@ -1,133 +1,209 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import './Carousel.css';
+
+const DRAG_BUFFER = 0;
+const VELOCITY_THRESHOLD = 500;
+const GAP = 16;
+const SPRING_OPTIONS = { type: 'spring', stiffness: 300, damping: 30 };
+
+function CarouselItem({ item, index, itemWidth, round, trackItemOffset, x, transition }) {
+  const range = [
+    -(index + 1) * trackItemOffset,
+    -index * trackItemOffset,
+    -(index - 1) * trackItemOffset,
+  ];
+  const rotateY = useTransform(x, range, [90, 0, -90], { clamp: false });
+  const isDragging = useRef(false);
+
+  const handleClick = () => {
+    if (!isDragging.current && item.href) {
+      window.open(item.href, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  return (
+    <motion.div
+      className={`carousel-item ${round ? 'round' : ''}`}
+      style={{
+        width: itemWidth,
+        height: round ? itemWidth : '100%',
+        rotateY,
+        ...(round && { borderRadius: '50%' }),
+      }}
+      transition={transition}
+      onDragStart={() => { isDragging.current = true; }}
+      onDragEnd={() => { setTimeout(() => { isDragging.current = false; }, 80); }}
+      onClick={handleClick}
+    >
+      {/* project screenshot */}
+      <div className="carousel-item-img">
+        <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+      </div>
+
+      {/* card footer */}
+      <div className="carousel-item-footer">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+          <span className="carousel-item-dot" />
+          <span className="carousel-item-year">{item.year}</span>
+        </div>
+        <div className="carousel-item-title">{item.title}</div>
+        <p className="carousel-item-description">{item.description}</p>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Carousel({
   items = [],
   baseWidth = 300,
-  baseHeight = 420,
   autoplay = false,
   autoplayDelay = 3000,
   pauseOnHover = false,
-  loop = true,
+  loop = false,
   round = false,
 }) {
-  const [idx, setIdx] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const timer = useRef(null);
-  const n = items.length;
-  const gap = 20;
+  const containerPadding = 16;
+  const itemWidth = baseWidth - containerPadding * 2;
+  const trackItemOffset = itemWidth + GAP;
 
-  const go = useCallback((d) => {
-    setIdx(i =>
-      loop
-        ? (i + d + n) % n
-        : Math.max(0, Math.min(n - 1, i + d))
-    );
-  }, [loop, n]);
+  const itemsForRender = useMemo(() => {
+    if (!loop || items.length === 0) return items;
+    return [items[items.length - 1], ...items, items[0]];
+  }, [items, loop]);
+
+  const [position, setPosition] = useState(loop ? 1 : 0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isJumping, setIsJumping] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const x = useMotionValue(0);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    if (!autoplay || paused || n <= 1) return;
-    timer.current = setInterval(() => go(1), autoplayDelay);
-    return () => clearInterval(timer.current);
-  }, [autoplay, paused, autoplayDelay, go, n]);
+    if (!pauseOnHover || !containerRef.current) return;
+    const el = containerRef.current;
+    const enter = () => setIsHovered(true);
+    const leave = () => setIsHovered(false);
+    el.addEventListener('mouseenter', enter);
+    el.addEventListener('mouseleave', leave);
+    return () => { el.removeEventListener('mouseenter', enter); el.removeEventListener('mouseleave', leave); };
+  }, [pauseOnHover]);
+
+  useEffect(() => {
+    if (!autoplay || itemsForRender.length <= 1 || (pauseOnHover && isHovered)) return;
+    const t = setInterval(() => {
+      setPosition(p => Math.min(p + 1, itemsForRender.length - 1));
+    }, autoplayDelay);
+    return () => clearInterval(t);
+  }, [autoplay, autoplayDelay, isHovered, pauseOnHover, itemsForRender.length]);
+
+  useEffect(() => {
+    const start = loop ? 1 : 0;
+    setPosition(start);
+    x.set(-start * trackItemOffset);
+  }, [items.length, loop, trackItemOffset, x]);
+
+  const effectiveTransition = isJumping ? { duration: 0 } : SPRING_OPTIONS;
+
+  const handleAnimationComplete = () => {
+    if (!loop || itemsForRender.length <= 1) { setIsAnimating(false); return; }
+    const lastClone = itemsForRender.length - 1;
+    if (position === lastClone) {
+      setIsJumping(true);
+      setPosition(1);
+      x.set(-1 * trackItemOffset);
+      requestAnimationFrame(() => { setIsJumping(false); setIsAnimating(false); });
+      return;
+    }
+    if (position === 0) {
+      setIsJumping(true);
+      const t = items.length;
+      setPosition(t);
+      x.set(-t * trackItemOffset);
+      requestAnimationFrame(() => { setIsJumping(false); setIsAnimating(false); });
+      return;
+    }
+    setIsAnimating(false);
+  };
+
+  const handleDragEnd = (_, info) => {
+    const { offset, velocity } = info;
+    const dir =
+      offset.x < -DRAG_BUFFER || velocity.x < -VELOCITY_THRESHOLD ? 1
+      : offset.x > DRAG_BUFFER || velocity.x > VELOCITY_THRESHOLD ? -1
+      : 0;
+    if (dir === 0) return;
+    setPosition(p => Math.max(0, Math.min(p + dir, itemsForRender.length - 1)));
+  };
+
+  const dragProps = loop ? {} : {
+    dragConstraints: {
+      left: -trackItemOffset * Math.max(itemsForRender.length - 1, 0),
+      right: 0,
+    },
+  };
+
+  const activeIndex =
+    items.length === 0 ? 0
+    : loop ? (position - 1 + items.length) % items.length
+    : Math.min(position, items.length - 1);
 
   return (
     <div
-      style={{ position: 'relative', overflow: 'hidden', width: '100%' }}
-      onMouseEnter={() => pauseOnHover && setPaused(true)}
-      onMouseLeave={() => pauseOnHover && setPaused(false)}
+      ref={containerRef}
+      className={`carousel-container ${round ? 'round' : ''}`}
+      style={{
+        width: `${baseWidth}px`,
+        ...(round && { height: `${baseWidth}px`, borderRadius: '50%' }),
+      }}
     >
-      {/* sliding track */}
-      <div
+      <motion.div
+        className="carousel-track"
+        drag={isAnimating ? false : 'x'}
+        {...dragProps}
         style={{
-          display: 'flex',
-          gap: gap,
-          transition: 'transform .52s cubic-bezier(.4,0,.2,1)',
-          transform: `translateX(calc(50% - ${baseWidth / 2}px - ${idx} * ${baseWidth + gap}px))`,
-          willChange: 'transform',
-          padding: '10px 0 6px',
+          width: itemWidth,
+          gap: `${GAP}px`,
+          perspective: 1000,
+          perspectiveOrigin: `${position * trackItemOffset + itemWidth / 2}px 50%`,
+          x,
         }}
+        onDragEnd={handleDragEnd}
+        animate={{ x: -(position * trackItemOffset) }}
+        transition={effectiveTransition}
+        onAnimationStart={() => setIsAnimating(true)}
+        onAnimationComplete={handleAnimationComplete}
       >
-        {items.map((item, i) => {
-          const active = i === idx;
-          return (
-            <div
-              key={i}
-              onClick={() => setIdx(i)}
-              style={{
-                flexShrink: 0,
-                width: baseWidth,
-                height: baseHeight,
-                borderRadius: round ? 999 : 14,
-                overflow: 'hidden',
-                cursor: active ? 'default' : 'pointer',
-                transition: 'opacity .35s ease, transform .35s ease, box-shadow .35s ease',
-                opacity: active ? 1 : 0.38,
-                transform: active ? 'scale(1)' : 'scale(0.87)',
-                boxShadow: active ? '0 24px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(192,132,252,.3)' : 'none',
-              }}
-            >
-              {item}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* prev arrow */}
-      <button
-        onClick={() => go(-1)}
-        aria-label="Previous"
-        style={{
-          position: 'absolute', top: '50%', left: 16,
-          transform: 'translateY(calc(-50% - 14px))',
-          zIndex: 10, width: 38, height: 38, borderRadius: '50%',
-          background: 'rgba(20,17,24,.9)', border: '1px solid rgba(255,255,255,.14)',
-          color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center',
-          justifyContent: 'center', fontSize: 20, lineHeight: 1,
-          backdropFilter: 'blur(8px)', transition: 'background .2s',
-        }}
-        onMouseEnter={e => e.currentTarget.style.background = 'rgba(192,132,252,.25)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'rgba(20,17,24,.9)'}
-      >
-        ‹
-      </button>
-
-      {/* next arrow */}
-      <button
-        onClick={() => go(1)}
-        aria-label="Next"
-        style={{
-          position: 'absolute', top: '50%', right: 16,
-          transform: 'translateY(calc(-50% - 14px))',
-          zIndex: 10, width: 38, height: 38, borderRadius: '50%',
-          background: 'rgba(20,17,24,.9)', border: '1px solid rgba(255,255,255,.14)',
-          color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center',
-          justifyContent: 'center', fontSize: 20, lineHeight: 1,
-          backdropFilter: 'blur(8px)', transition: 'background .2s',
-        }}
-        onMouseEnter={e => e.currentTarget.style.background = 'rgba(192,132,252,.25)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'rgba(20,17,24,.9)'}
-      >
-        ›
-      </button>
-
-      {/* dot indicators */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 18 }}>
-        {items.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIdx(i)}
-            style={{
-              width: i === idx ? 22 : 6,
-              height: 6,
-              borderRadius: 99,
-              background: i === idx ? '#c084fc' : 'rgba(255,255,255,.2)',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              transition: 'all .3s ease',
-            }}
+        {itemsForRender.map((item, index) => (
+          <CarouselItem
+            key={`${item?.id ?? index}-${index}`}
+            item={item}
+            index={index}
+            itemWidth={itemWidth}
+            round={round}
+            trackItemOffset={trackItemOffset}
+            x={x}
+            transition={effectiveTransition}
           />
         ))}
+      </motion.div>
+
+      <div className={`carousel-indicators-container ${round ? 'round' : ''}`}>
+        <div className="carousel-indicators">
+          {items.map((_, index) => (
+            <motion.button
+              type="button"
+              key={index}
+              className={`carousel-indicator ${activeIndex === index ? 'active' : 'inactive'}`}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={activeIndex === index}
+              animate={{ scale: activeIndex === index ? 1.2 : 1 }}
+              onClick={() => setPosition(loop ? index + 1 : index)}
+              transition={{ duration: 0.15 }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
