@@ -45,7 +45,7 @@ export default function Skills() {
   return (
     <section style={{ borderTop: '1px solid var(--hairline)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 40px' }}>
-        <div className="eyebrow" style={{ marginBottom: 24 }}>03 Skills</div>
+        <div className="eyebrow" style={{ marginBottom: 24 }}>Skills</div>
         <h2 style={{
           fontSize:      'clamp(32px, 5vw, 60px)',
           fontWeight:    700,

@@ -39,7 +39,7 @@ const Contact = () => {
 
         {/* eyebrow + headline */}
         <motion.div {...entry(0)}>
-          <span className="mono" style={{ display: 'block', marginBottom: 30, color: 'var(--white-50)' }}>03 Let's Connect</span>
+          <span className="mono" style={{ display: 'block', marginBottom: 30, color: 'var(--white-50)' }}>Let's Connect</span>
           <h2 style={{ margin: 0, lineHeight: 0.95, fontSize: 'clamp(2.6rem, 9vw, 8rem)', letterSpacing: '-0.035em' }}>
             <span className="grad-text" style={{ fontWeight: 900, paddingBottom: '0.12em' }}>Let's Build </span>
             <span className="grad-text" style={{ fontWeight: 300, fontStyle: 'italic', paddingBottom: '0.12em' }}>Something</span>

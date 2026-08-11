@@ -1,24 +1,14 @@
-import { useState } from 'react';
 import PillNav from './PillNav';
 
 const LOGO = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect width='20' height='20' rx='3' fill='%238b5cf6'/%3E%3C/svg%3E";
 
+const items = [
+  { label: 'Work',    href: '#work' },
+  { label: 'About',  href: '#about' },
+  { label: 'Contact', href: '#contact', accent: true },
+];
+
 export default function Navbar() {
-  const [contactLabel, setContactLabel] = useState('Contact');
-
-  const handleContact = (e) => {
-    e.preventDefault();
-    navigator.clipboard?.writeText('souptiksinha73@gmail.com').catch(() => {});
-    setContactLabel('Copied!');
-    setTimeout(() => setContactLabel('Contact'), 2200);
-  };
-
-  const items = [
-    { label: 'Work',         href: '#work' },
-    { label: 'About',        href: '#about' },
-    { label: contactLabel,   href: 'mailto:souptiksinha73@gmail.com', onClick: handleContact, accent: true },
-  ];
-
   return (
     <PillNav
       logo={LOGO}

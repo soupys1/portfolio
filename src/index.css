@@ -75,7 +75,7 @@
   .mobile-menu-btn  { display: flex !important; }
   .work-two-col     { grid-template-columns: 1fr !important; }
   .work-grid        { grid-template-columns: 1fr !important; }
-  .card-swap-col    { display: none !important; }
+  .carousel-section { display: none !important; }
   .work-cards-mobile{ display: flex !important; }
   .exp-grid         { grid-template-columns: 1fr !important; }
 }
