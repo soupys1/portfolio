@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import Carousel from './Carousel';
 
 import aiCompanionImg from '../assets/AIcompanion.png';
@@ -17,6 +18,18 @@ const WORK = [
 ];
 
 export default function Projects() {
+  const rightColRef = useRef(null);
+  const [colWidth, setColWidth] = useState(480);
+
+  useEffect(() => {
+    if (!rightColRef.current) return;
+    const ro = new ResizeObserver(([e]) => setColWidth(Math.floor(e.contentRect.width)));
+    ro.observe(rightColRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  const carouselHeight = Math.round(colWidth * 0.78);
+
   return (
     <section id="work" style={{ borderTop: '1px solid rgba(255,255,255,.1)', overflow: 'hidden' }}>
 
@@ -68,8 +81,8 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* right: carousel */}
-        <div className="carousel-col" style={{ display: 'flex', alignItems: 'center', minHeight: 480 }}>
+        {/* right: carousel — fills column width */}
+        <div ref={rightColRef} className="carousel-col" style={{ minHeight: carouselHeight + 60 }}>
           <Carousel
             items={WORK.map(p => ({
               id:          p.n,
@@ -79,7 +92,8 @@ export default function Projects() {
               image:       p.image,
               href:        p.href,
             }))}
-            baseWidth={300}
+            baseWidth={colWidth}
+            baseHeight={carouselHeight}
             autoplay={true}
             autoplayDelay={3000}
             pauseOnHover={true}

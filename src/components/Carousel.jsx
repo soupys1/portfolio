@@ -7,7 +7,7 @@ const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
 const SPRING_OPTIONS = { type: 'spring', stiffness: 300, damping: 30 };
 
-function CarouselItem({ item, index, itemWidth, round, trackItemOffset, x, transition }) {
+function CarouselItem({ item, index, itemWidth, baseHeight, round, trackItemOffset, x, transition }) {
   const range = [
     -(index + 1) * trackItemOffset,
     -index * trackItemOffset,
@@ -27,7 +27,7 @@ function CarouselItem({ item, index, itemWidth, round, trackItemOffset, x, trans
       className={`carousel-item ${round ? 'round' : ''}`}
       style={{
         width: itemWidth,
-        height: round ? itemWidth : '100%',
+        height: round ? itemWidth : baseHeight,
         rotateY,
         ...(round && { borderRadius: '50%' }),
       }}
@@ -57,6 +57,7 @@ function CarouselItem({ item, index, itemWidth, round, trackItemOffset, x, trans
 export default function Carousel({
   items = [],
   baseWidth = 300,
+  baseHeight = 400,
   autoplay = false,
   autoplayDelay = 3000,
   pauseOnHover = false,
@@ -181,6 +182,7 @@ export default function Carousel({
             item={item}
             index={index}
             itemWidth={itemWidth}
+            baseHeight={baseHeight}
             round={round}
             trackItemOffset={trackItemOffset}
             x={x}

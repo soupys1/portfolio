@@ -27,7 +27,6 @@
   border-radius: calc(var(--outer-r) - var(--p-distance));
   background: #141118;
   overflow: hidden;
-  height: 400px;
   user-select: none;
   cursor: pointer;
   transition: border-color .25s ease;
