@@ -18,6 +18,15 @@ export default function Hero() {
         background:     'var(--bg-hero)',
       }}
     >
+      {/* Static CSS purple glow — always visible regardless of WebGL / reduced-motion */}
+      <div style={{
+        position:      'absolute',
+        inset:         0,
+        background:    'radial-gradient(ellipse 70% 75% at 50% 52%, rgba(139,92,246,.55) 0%, rgba(92,33,182,.22) 42%, transparent 72%)',
+        pointerEvents: 'none',
+        zIndex:        1,
+      }} />
+
       {/* WebGL light pillar — lazy so Three.js doesn't block first paint */}
       {!reduced && (
         <Suspense fallback={null}>
