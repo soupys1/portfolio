@@ -6,15 +6,17 @@ import crmImg         from '../assets/pulse.png';
 import footballImg    from '../assets/football.PNG';
 import joinahackImg   from '../assets/joinahack.PNG';
 import conversoImg    from '../assets/converso.PNG';
+import studyforgeImg  from '../assets/studyforge.png';
 
 const ACCENT = '#c084fc';
 
 const WORK = [
-  { n: '01', title: 'AI Travel Companion',     tag: 'AI · Full-stack',  year: '2026', image: aiCompanionImg, href: 'https://travel-companion-frontend-sandy.vercel.app/' },
-  { n: '02', title: 'CRM Platform',            tag: 'Full-stack',       year: '2026', image: crmImg,         href: 'https://crm-frontend-nu-gold.vercel.app/login' },
-  { n: '03', title: 'ML Football Predictions', tag: 'Machine learning', year: '2025', image: footballImg,    href: 'https://ml-football-predictions-frontend.vercel.app/' },
-  { n: '04', title: 'JoinAHack',               tag: 'Social platform',  year: '2025', image: joinahackImg,   href: 'https://social-media-frontend-black-five.vercel.app/' },
-  { n: '05', title: 'Converso',                tag: 'AI · Voice',       year: '2025', image: conversoImg,    href: 'https://saas-app-lemon.vercel.app/' },
+  { n: '01', title: 'StudyForge',              tag: 'AI · EdTech',      year: '2026', image: studyforgeImg,  href: 'https://studyforge-frontend-nu.vercel.app/' },
+  { n: '02', title: 'AI Travel Companion',     tag: 'AI · Full-stack',  year: '2026', image: aiCompanionImg, href: 'https://travel-companion-frontend-sandy.vercel.app/' },
+  { n: '03', title: 'CRM Platform',            tag: 'Full-stack',       year: '2026', image: crmImg,         href: 'https://crm-frontend-nu-gold.vercel.app/login' },
+  { n: '04', title: 'ML Football Predictions', tag: 'Machine learning', year: '2025', image: footballImg,    href: 'https://ml-football-predictions-frontend.vercel.app/' },
+  { n: '05', title: 'JoinAHack',               tag: 'Social platform',  year: '2025', image: joinahackImg,   href: 'https://social-media-frontend-black-five.vercel.app/' },
+  { n: '06', title: 'Converso',                tag: 'AI · Voice',       year: '2025', image: conversoImg,    href: 'https://saas-app-lemon.vercel.app/' },
 ];
 
 export default function Projects() {
